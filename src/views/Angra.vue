@@ -10,8 +10,12 @@
       src="@/assets/images/angra.jpg"
     ></v-img>
 
-    <v-card-title >Angra</v-card-title>
-
+    <v-card-title >Angra         
+        <form action="https://open.spotify.com/artist/7IAXZaLTb6nkJr8RmVPn5y">
+          <v-icon display="flex" color="green" type="submit" class="spotify pa-2" v-on:click="enviar()">{{'mdi-spotify'}}</v-icon>
+        </form>
+    </v-card-title>
+  
     <v-card-text>
       <v-row
         align="center"
@@ -50,12 +54,6 @@
                 ></v-card-title> 
 
                 <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-                <v-btn   :color="item.color">
-                <form action="https://open.spotify.com/artist/7IAXZaLTb6nkJr8RmVPn5y">
-                <v-icon type="submit" class="spotify" v-on:click="enviar()">{{'mdi-spotify'}}</v-icon>
-                </form>
-
-                </v-btn>
               </div>
 
               <v-avatar
@@ -110,6 +108,7 @@
         {
           color: '#FF0000',
           src: 'https://upload.wikimedia.org/wikipedia/pt/7/78/AngraAngelsCry.jpg',
+          link: 'https://open.spotify.com/album/1VYp1m8Eo4AApycV8S44a7',
           title: 'Angels Cry',
           artist: '1993',
           music1: 'Unfinished Allegro',
