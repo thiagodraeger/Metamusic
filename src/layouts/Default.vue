@@ -1,23 +1,12 @@
 <template>
     <v-app>
-      <v-app-bar app color="#0a0a0a" elevation="'" >
-        <v-app-bar-nav-icon @click.stop="sidebar = !sidebar" color="white"></v-app-bar-nav-icon>
-        <v-spacer></v-spacer>
-        <v-icon color="white">mdi-account-box </v-icon>
-      </v-app-bar>
-      <v-navigation-drawer app v-model="sidebar" color="#0a0a0a">
-        <v-list dense color="#0a0a0a" dark>
-          <v-list-item>           
-            <v-list-item-action>
-              <v-icon @click.stop="sidebar = !sidebar" >mdi-chevron-left</v-icon>
-            </v-list-item-action>
-            <v-list-item-tittle>
+      <v-navigation-drawer app v-model="sidebar" color="#0a0a0a" dark>
+        <v-list dense color="#0a0a0a" >
+          <v-list-item-tittle align="center">
             <h3> MetaMusic   </h3>
           </v-list-item-tittle>
-          </v-list-item>
         </v-list>
-        <v-divider></v-divider>
-        <v-list dark>
+        <v-list>
           <v-list-item v-for="item of items" :key="item.title" link :to="item.to">
             <v-list-item-icon>
               <v-icon> {{item.icon}} </v-icon>
@@ -38,7 +27,6 @@
 export default {
   data(){
     return{
-      sidebar:false,
       items:[
         {title:"Comentários", icon:"mdi-account-box", to:"/home"},
         {title:"Artistas", icon:"mdi-account-group", to:"/artistas"},
@@ -53,7 +41,8 @@ export default {
 
 <style scoped>
 main {
-  background-image: url('https://wallpaperaccess.com/full/1162700.jpg');
+  /* background-image: url('https://wallpaperaccess.com/full/1162700.jpg'); */
+  background-color: #171717;
   background-size: cover;
   background-attachment: fixed;
 }

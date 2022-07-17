@@ -13,7 +13,8 @@ export default {
 
 <style scoped>
 main {
-  background-image: url('https://wallpaperaccess.com/full/1162700.jpg');
+  /* background-image: url('https://wallpaperaccess.com/full/1162700.jpg'); */
+  background-color: #171717;
   background-size: cover;
   background-attachment: fixed;
 }
