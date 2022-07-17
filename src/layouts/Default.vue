@@ -6,7 +6,7 @@
             <h3> MetaMusic   </h3>
           </v-list-item-tittle>
         </v-list>
-        <v-list>
+        <v-list >
           <v-list-item v-for="item of items" :key="item.title" link :to="item.to">
             <v-list-item-icon>
               <v-icon> {{item.icon}} </v-icon>

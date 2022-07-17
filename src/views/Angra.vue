@@ -1,12 +1,12 @@
-dirb<template>
- <v-card :loading="loading" class="mx-auto" color="#171717">
-   <v-img height="300" src="@/assets/images/angra.jpg"></v-img>
+<template>
+ <v-card :loading="loading" class="mx-auto" color="#121212">
+   <v-img height="300" position="right 50% top 25%" src="https://rollingstone.uol.com.br/media/uploads/banda_angra_foto_henrique_grandi.jpg"></v-img>
  
    <v-card-title class="white--text"> Angra
      <form action="https://open.spotify.com/artist/7IAXZaLTb6nkJr8RmVPn5y">
        <v-icon
          display="flex"
-         color="green"
+         color="#1DB954"
          type="submit"
          class="spotify pa-2"
          v-on:click="enviar()"
