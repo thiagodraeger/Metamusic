@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height fluid text-center >
+  <v-container fill-height fluid text-center>
     <v-container>
       <v-row>
         <v-col
@@ -7,28 +7,25 @@
           cols="2"
           sm="5"
           offset="5"
-          
         >
-          <v-alert
-          border="top"
-          dark>
-          <h1 class="h1">Entrar no MetaMusic</h1>
+          <v-alert border="top" dark>
+            <h1 class="h1">Entrar no MetaMusic</h1>
           </v-alert>
-        
         </v-col>
       </v-row>
       <v-row class="elavation-3 mx-auto">
-        <v-col cols="auto">
-        </v-col>
+        <v-col cols="auto"> </v-col>
         <v-col>
-          <v-alert class="box"
-         
-          border="top"
-          dark
-          >
+          <v-alert class="box" border="top" dark>
             <v-form>
-              <v-text-field dark label="Email" v-model="user.email" @keyup.enter="login"></v-text-field>
-              <v-text-field dark
+              <v-text-field
+                dark
+                label="Email"
+                v-model="user.email"
+                @keyup.enter="login"
+              ></v-text-field>
+              <v-text-field
+                dark
                 label="Senha"
                 v-model="user.password"
                 :type="show ? 'text' : 'password'"
@@ -36,14 +33,10 @@
                 @click:append="show = !show"
                 @keyup.enter="login"
               ></v-text-field>
-              <v-btn color="green"  @click="login"> Login</v-btn>
-              <v-btn class="ml-4" color="red" @click="reset">
-                Cancelar</v-btn
-              >
-              
+              <v-btn color="green" @click="login"> Login</v-btn>
+              <v-btn class="ml-4" color="red" @click="reset"> Cancelar</v-btn>
             </v-form>
-            </v-alert>
-            
+          </v-alert>
         </v-col>
       </v-row>
     </v-container>
@@ -71,7 +64,6 @@
 </template>
 
 <script>
-import * as fb from "@/plugins/firebase";
 export default {
   data() {
     return {
@@ -80,44 +72,6 @@ export default {
       errorLogin: false,
       novaConta: false,
     };
-  },
-  methods: {
-    reset() {
-      this.user = {};
-    },
-    async login() {
-      try {
-        await fb.auth.signInWithEmailAndPassword(
-          this.user.email,
-          this.user.password
-        );
-        this.$router.push({ name: "Home" });
-      } catch (error) {
-        const errorCode = error.code;
-        switch (errorCode) {
-          case "auth/wrong-password":
-            this.errorLogin = true;
-            break;
-          case "auth/invalid-email":
-            this.errorLogin = true;
-            break;
-          case "auth/user-not-found":
-            this.novaConta = true;
-            break;
-          default:
-            this.errorLogin = true;
-            break;
-        }
-      }
-    },
-    async criarNovaConta() {
-      this.novaConta = false;
-      await fb.auth.createUserWithEmailAndPassword(
-        this.user.email,
-        this.user.password
-      );
-      this.login();
-    },
   },
 };
 </script>

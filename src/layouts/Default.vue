@@ -9,10 +9,20 @@
         <v-list >
           <v-list-item v-for="item of items" :key="item.title" link :to="item.to">
             <v-list-item-icon>
-              <v-icon> {{item.icon}} </v-icon>
+              <v-icon> {{item.icon1}} </v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              {{item.title}}
+              {{item.title1}}
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-list >
+          <v-list-item v-for="item of items" :key="item.title" link :to="item.to">
+            <v-list-item-icon>
+              <v-icon> {{item.icon2}} </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              {{item.title2}}
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -28,11 +38,10 @@ export default {
   data(){
     return{
       items:[
-        {title:"Comentários", icon:"mdi-account-box", to:"/home"},
-        {title:"Artistas", icon:"mdi-account-group", to:"/artistas"},
-        {title:"Perfil", icon:"mdi-account-cog", to:"/perfil"},
-        {title:"Ranking", icon:"mdi-account-cog", to:"/Ranking"},
-        {title:"Sair", icon:"mdi-exit-to-app", to:"/"},
+        {title1:"Home", icon1:"mdi-account-box", to:"/home"},
+        {title1:"Artistas", icon1:"mdi-account-group", to:"/artistas"},
+        {title2:"Perfil", icon2:"mdi-account-cog", to:"/perfil"},
+        {title2:"Sair", icon2:"mdi-exit-to-app", to:"/"},
       ]
     };
   },
