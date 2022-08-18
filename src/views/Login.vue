@@ -3,20 +3,25 @@
     <v-container>
       <v-row>
         <v-col
-          class="black--text text-center mx-auto pb-5"
+          class="black--text text-center mx-auto pb-5 d-flex justify-center"
           cols="2"
           sm="5"
           offset="5"
         >
-          <v-alert border="top" dark>
-            <h1 class="h1">Entrar no MetaMusic</h1>
+          <v-alert dark max-height="250" max-width="350">
+            <v-img
+              max-height="200"
+              max-width="300"
+              src="@/assets/images/logo_meta.png"
+            >
+            </v-img>
           </v-alert>
         </v-col>
       </v-row>
       <v-row class="elavation-3 mx-auto">
         <v-col cols="auto"> </v-col>
         <v-col>
-          <v-alert class="box" border="top" dark>
+          <v-alert class="box" dark>
             <v-form>
               <v-text-field
                 dark
