@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app v-model="sidebar" color="#0a0a0a" dark>
+    <v-navigation-drawer app v-model="sidebar" width="225" color="#0a0a0a" dark>
       <v-list dense color="#0a0a0a">
         <v-list-item-tittle align="center">
           <h3>MetaMusic</h3>
@@ -28,9 +28,9 @@ export default {
   data() {
     return {
       items: [
-        { title: "Home", icon: "mdi-account-box", to: "/home" },
+        { title: "Home", icon: "mdi-home", to: "/home" },
         { title: "Artistas", icon: "mdi-account-group", to: "/artistas" },
-        { title: "Perfil", icon: "mdi-account-cog", to: "/perfil" },
+        { title: "Perfil", icon: "mdi-account-box", to: "/perfil" },
         { title: "Sair", icon: "mdi-exit-to-app", to: "/" },
       ],
     };
@@ -46,3 +46,5 @@ main {
   background-attachment: fixed;
 }
 </style>
+
+
