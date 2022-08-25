@@ -3,15 +3,13 @@
     <v-container>
       <v-row>
         <v-col
-          class="black--text text-center mx-auto pb-5 d-flex justify-center"
+          class="black--text text-center mx-auto pb-5 justify-center"
           cols="2"
           sm="5"
           offset="5"
         >
-          <v-alert dark max-height="250" max-width="350">
+          <v-alert class="transparent" max-height="450" max-width="550">
             <v-img
-              max-height="200"
-              max-width="300"
               src="@/assets/images/logo_meta.png"
             >
             </v-img>
@@ -19,18 +17,24 @@
         </v-col>
       </v-row>
       <v-row class="elavation-3 mx-auto">
-        <v-col cols="auto"> </v-col>
         <v-col>
-          <v-alert class="box" dark>
-            <v-form>
+          <v-alert class="box  test" white>
+            <v-form style="width:50rem">
               <v-text-field
-                dark
+                class="input-field"
+                rounded     
+                filled   
                 label="Email"
                 v-model="user.email"
                 @keyup.enter="login"
-              ></v-text-field>
+                hide-details="auto"
+              >
+              </v-text-field>
               <v-text-field
-                dark
+                rounded
+                filled
+                class="input-field mt-5 mb-5"
+                hide-details="auto"
                 label="Senha"
                 v-model="user.password"
                 :type="show ? 'text' : 'password'"
@@ -82,7 +86,25 @@ export default {
 </script>
 
 <style scoped>
-.h1 {
-  color: white;
+.test{
+  background-color:transparent;
+  padding:0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  
+}
+.input-field{
+  background-color:white;
+  border-radius: 40px;
+  margin: 2%;
+
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+.text-fieldct{
+  width: 100%;
 }
 </style>

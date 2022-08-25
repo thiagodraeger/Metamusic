@@ -27,7 +27,7 @@
       <div>
         Helloween é uma influente banda alemã de power metal, fundada em 1984 por Michael Weikath, Markus Grosskopf, Kai Hansen e Ingo Schwichtenberg (falecido em 1995). Ela é considerada uma das bandas responsaveis por "criar" o power metal. 
         <br>
-       Em 2018 a banda anunciaria o retorno de Kai Hansen e Michael Kiske à banda. Atualmente ela é formada por Michael Weikath, Markus Grosskopf, Andi Deris, Sascha Gerstner, Dani Löble, Kai Hansen e Michael Kiske.
+       Em 2018 a banda anunciaria o retorno de Kai Hansen e Michael Kiske. Atualmente ela é formada por Michael Weikath, Markus Grosskopf, Andi Deris, Sascha Gerstner, Dani Löble, Kai Hansen e Michael Kiske.
       </div>
     </v-card-text>
 
