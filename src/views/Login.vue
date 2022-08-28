@@ -3,8 +3,7 @@
     <v-container>
       <v-row>
         <v-col
-          class="black--text text-center mx-auto pb-5 justify-center"
-          cols="2"
+          class="mx-auto pb-1 justify-center"
           sm="5"
           offset="5"
         >
@@ -16,14 +15,15 @@
           </v-alert>
         </v-col>
       </v-row>
-      <v-row class="elavation-3 mx-auto">
-        <v-col>
-          <v-alert class="box  test" white>
-            <v-form style="width:50rem">
+      <v-row>
+        <v-col d-flex>
+          <v-alert class="box" white>
+            <v-form style="width:45rem">
               <v-text-field
                 class="input-field"
-                rounded     
-                filled   
+                rounded  
+                solo
+                placeholder="Email"
                 label="Email"
                 v-model="user.email"
                 @keyup.enter="login"
@@ -32,7 +32,8 @@
               </v-text-field>
               <v-text-field
                 rounded
-                filled
+                solo
+                placeholder="Senha"
                 class="input-field mt-5 mb-5"
                 hide-details="auto"
                 label="Senha"
@@ -42,14 +43,25 @@
                 @click:append="show = !show"
                 @keyup.enter="login"
               ></v-text-field>
-              <v-btn color="green" @click="login"> Login</v-btn>
-              <v-btn class="ml-4" color="red" @click="reset"> Cancelar</v-btn>
+              <v-btn color="grey" @click="login"> Login</v-btn>
+              <!-- <v-btn class="ml-4" color="red" @click="reset"> Cancelar</v-btn> -->
             </v-form>
           </v-alert>
+          <v-card class="transparent" dark>
+            <v-card-text>
+              <v-row class="font-italic" justify="center">
+                <a href="">Ainda não tem uma conta? Registre-se</a>
+              </v-row>
+              <v-row class="font-italic" justify="center">
+                <a href="http://">Esqueceu a senha?</a>
+              </v-row>
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
-    <v-snackbar color="red" v-model="errorLogin" danger multline timeout="2050">
+
+    <!-- <v-snackbar color="red" v-model="errorLogin" danger multline timeout="2050">
       Usuário ou senha inválidos
     </v-snackbar>
 
@@ -68,7 +80,7 @@
           >
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </v-container>
 </template>
 
@@ -86,7 +98,21 @@ export default {
 </script>
 
 <style scoped>
-.test{
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.box{
   background-color:transparent;
   padding:0;
   width: 100%;

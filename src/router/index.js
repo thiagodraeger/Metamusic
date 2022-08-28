@@ -70,6 +70,16 @@ const routes = [
         name: 'Home',
         component: Home
       },
+      {
+        path: '/noticias/n1',
+        name: 'n1',
+        component: () => import('@/views/noticias/n1.vue')
+      },
+      {
+        path: '/noticias/n2',
+        name: 'n2',
+        component: () => import('@/views/noticias/n2.vue')
+      },
     ]
   },
 ]
