@@ -1,11 +1,11 @@
 <template>
-  <v-card class="mx-auto" max-width="90%" color="#171717" dark outlined>
+  <v-card class="mx-auto" max-width="85%" color="#171717" dark outlined>
 <!-- Lojas -->
     <v-card-title class="pb-0">LOJAS</v-card-title>
     <v-divider color="white"></v-divider>
     <v-container class="lojas mt-4">
       <v-row>
-        <v-col v-for="loja in lojas" :key="loja.id" cols="2">
+        <v-col v-for="loja in lojas" :key="loja.id" cols="2" class="d-flex align-center">
           <v-card link :href="loja.link" color="#131313" outlined>
             <v-img :src="loja.src">
             </v-img>
@@ -61,7 +61,7 @@ export default {
         src: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
         text: "Deserunt quo quibusdam nostrum. Mollitia ea doloremque nobis harum. Quod veniam laborum sunt dolores.",
         flex: 6, 
-        to: "/noticias/n1",
+        to: "/noticias/n3",
       },
     ],
     lojas: [

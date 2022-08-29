@@ -3,12 +3,10 @@
     <v-container>
       <v-row>
         <v-col
-          class="mx-auto pb-1 justify-center"
-          sm="5"
-          offset="5"
+          class="mx-auto pb-1 d-flex justify-center"
         >
-          <v-alert class="transparent" max-height="450" max-width="550">
-            <v-img
+          <v-alert class="transparent">
+            <v-img style="width: 550px"
               src="@/assets/images/logo_meta.png"
             >
             </v-img>

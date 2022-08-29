@@ -80,6 +80,11 @@ const routes = [
         name: 'n2',
         component: () => import('@/views/noticias/n2.vue')
       },
+      {
+        path: '/noticias/n3',
+        name: 'n3',
+        component: () => import('@/views/noticias/n3.vue')
+      },
     ]
   },
 ]
