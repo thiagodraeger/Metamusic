@@ -41,14 +41,14 @@
                 @click:append="show = !show"
                 @keyup.enter="login"
               ></v-text-field>
-              <v-btn color="grey" @click="login"> Login</v-btn>
+              <v-btn color="btn grey" @click="login"> Login</v-btn>
               <!-- <v-btn class="ml-4" color="red" @click="reset"> Cancelar</v-btn> -->
             </v-form>
           </v-alert>
           <v-card class="transparent" dark>
             <v-card-text>
-              <v-row class="font-italic" justify="center">
-                <a href="">Ainda não tem uma conta? Registre-se</a>
+              <v-row class="font-italic pb-1" justify="center">
+                <a href="/cadastro">Ainda não tem uma conta? Registre-se</a>
               </v-row>
               <v-row class="font-italic" justify="center">
                 <a href="http://">Esqueceu a senha?</a>
@@ -99,6 +99,7 @@ export default {
 a:link {
   color: white;
   text-decoration: none;
+  font-size: 20px;
 }
 
 a:visited {
