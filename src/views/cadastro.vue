@@ -1,6 +1,6 @@
 <template>
     <v-container fill-height fluid text-center>
-      <v-container>
+      <v-container class="cont">
         <v-row>
             <v-col class="mx-auto pb-1 d-flex justify-center">
                 <h1>Cadastre-se aqui:</h1>
@@ -8,11 +8,12 @@
         </v-row>
         <v-row>
           <v-col d-flex>
-            <v-alert class="box" white>
+            <v-alert class="box">
               <v-form style="width:45rem">
                 <v-text-field
-                  class="input-field"
-                  rounded  
+                  class="input-field mt-5 mb-5"
+                  background-color="#1E1E1E"
+                  dark
                   solo
                   placeholder="Nome"
                   label="Nome"
@@ -22,8 +23,9 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  class="input-field"
-                  rounded  
+                  class="input-field mt-5 mb-5"
+                  background-color="#1E1E1E"
+                  dark
                   solo
                   placeholder="Email"
                   label="Email"
@@ -33,7 +35,8 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  rounded
+                  background-color="#1E1E1E"
+                  dark
                   solo
                   placeholder="Senha"
                   class="input-field mt-5 mb-5"
@@ -46,7 +49,8 @@
                   @keyup.enter="login"
                 ></v-text-field>
                 <v-text-field
-                  rounded
+                  background-color="#1E1E1E"
+                  dark
                   solo
                   placeholder="Confirmar Senha"
                   class="input-field mt-5 mb-5"
@@ -58,7 +62,7 @@
                   @click:append="show = !show"
                   @keyup.enter="login"
                 ></v-text-field>
-                <v-btn color="btn grey" @click="login"> Login</v-btn>
+                <v-btn color="green" @click="login"> Login</v-btn>
                 <v-btn class="ml-4" color="red" @click="reset"> Cancelar</v-btn>
               </v-form>
             </v-alert>
@@ -83,7 +87,13 @@
   
   <style scoped>
   h1{
-    color: white;
+      color: white;
+    }  
+
+  .cont{
+    background-color: #1E1E1E;
+    width: 47rem;
+    border-radius: 30px; 
   }
 
   .box{
@@ -93,19 +103,9 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    
   }
   .input-field{
-    background-color:white;
-    border-radius: 40px;
     margin: 2%;
-  
-  }
-  textarea:focus, input:focus{
-      outline: none;
-  }
-  .text-fieldct{
-    width: 100%;
   }
   </style>
   

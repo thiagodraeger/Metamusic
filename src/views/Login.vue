@@ -126,9 +126,6 @@ a:hover {
   margin: 2%;
 
 }
-textarea:focus, input:focus{
-    outline: none;
-}
 .text-fieldct{
   width: 100%;
 }
