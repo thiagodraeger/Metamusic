@@ -1,14 +1,32 @@
 <template>
-  <v-container class="pa-8" fluid>
-    <h1 class="h1 white--text" > Meu perfil</h1>
+  <v-card class="mx-auto" max-width="85%" color="#171717" dark outlined>
+    <v-card-title class="pb-0">MEU PERFIL</v-card-title>
+    <v-divider color="white"></v-divider>
     <v-form>    
-      <v-container>
-        <v-text-field label="Nome" dark v-model="nome"> </v-text-field>
-        <v-text-field label="Sobrenome" dark v-model="sobrenome"></v-text-field>
-        <v-btn color="green" @click="salvarPerfil"> Salvar</v-btn>
+      <v-container class="mt-4">
+        <v-col>
+          <v-row>
+            <v-img max-height="120" max-width="120"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+            class="mb-5"
+            style="border-radius: 15px"
+            >
+            </v-img>
+          </v-row>
+        </v-col>
+        <v-text-field label="Nome" dark v-model="nome" outlined dense></v-text-field>
+        <v-text-field label="Email" dark v-model="email" outlined dense></v-text-field>
+        <v-textarea outlined dense>
+          <template v-slot:label>
+            <div>
+              Descrição
+            </div>
+          </template>
+        </v-textarea>
+        <v-btn color="blue" @click="salvarPerfil"> Salvar</v-btn>
       </v-container>
     </v-form>
-  </v-container>
+  </v-card>
 </template>
 
 <script>

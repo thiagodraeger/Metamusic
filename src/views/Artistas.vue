@@ -3,13 +3,13 @@
     <h1 class="pa-4 white--text" fluid>Artistas</h1>
     <v-container fluid>
       <v-row dense>
-        <v-col v-for="banda in bandas" :key="banda.id" cols="4">
+        <v-col v-for="banda in bandas" :key="banda.id" cols="3">
           <v-card link :to="banda.to">
             <v-img
               :src="banda.src"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.5)"
-              height="350px"
+              height="250px"
               
             >
               <v-card-title v-text="banda.nome"></v-card-title>

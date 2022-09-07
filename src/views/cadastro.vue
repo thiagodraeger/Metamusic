@@ -11,11 +11,8 @@
             <v-alert class="box">
               <v-form style="width:45rem">
                 <v-text-field
+                  flat
                   class="input-field mt-5 mb-5"
-                  background-color="#1E1E1E"
-                  dark
-                  solo
-                  placeholder="Nome"
                   label="Nome"
                   v-model="user.Nome"
                   @keyup.enter="login"
@@ -23,11 +20,8 @@
                 >
                 </v-text-field>
                 <v-text-field
+                  flat
                   class="input-field mt-5 mb-5"
-                  background-color="#1E1E1E"
-                  dark
-                  solo
-                  placeholder="Email"
                   label="Email"
                   v-model="user.email"
                   @keyup.enter="login"
@@ -35,10 +29,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  background-color="#1E1E1E"
-                  dark
-                  solo
-                  placeholder="Senha"
+                  flat
                   class="input-field mt-5 mb-5"
                   hide-details="auto"
                   label="Senha"
@@ -49,10 +40,7 @@
                   @keyup.enter="login"
                 ></v-text-field>
                 <v-text-field
-                  background-color="#1E1E1E"
-                  dark
-                  solo
-                  placeholder="Confirmar Senha"
+                  flat
                   class="input-field mt-5 mb-5"
                   hide-details="auto"
                   label="Confirmar Senha"
@@ -85,13 +73,10 @@
   };
   </script>
   
-  <style scoped>
-  h1{
-      color: white;
-    }  
+  <style scoped> 
 
   .cont{
-    background-color: #1E1E1E;
+    background-color: white;
     width: 47rem;
     border-radius: 30px; 
   }

@@ -42,7 +42,6 @@
                 @keyup.enter="login"
               ></v-text-field>
               <v-btn color="btn grey" @click="login"> Login</v-btn>
-              <!-- <v-btn class="ml-4" color="red" @click="reset"> Cancelar</v-btn> -->
             </v-form>
           </v-alert>
           <v-card class="transparent" dark>
@@ -58,27 +57,9 @@
         </v-col>
       </v-row>
     </v-container>
-
     <!-- <v-snackbar color="red" v-model="errorLogin" danger multline timeout="2050">
       Usuário ou senha inválidos
-    </v-snackbar>
-
-    <v-dialog v-model="novaConta" persistent max-width="300">
-      <v-card>
-        <v-card-tittle>Conta não encontrada.</v-card-tittle>
-        <v-card-text>
-          A conta não foi localizada. Deseja criar uma nova conta com os dados
-          informados?
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="green darken-2" text @click="criarNovaConta">Sim</v-btn>
-          <v-btn color="red darken-2" text @click="novaConta = false">
-            Não</v-btn
-          >
-        </v-card-actions>
-      </v-card>
-    </v-dialog> -->
+    </v-snackbar>-->
   </v-container>
 </template>
 

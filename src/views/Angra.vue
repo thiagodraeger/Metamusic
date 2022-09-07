@@ -93,10 +93,7 @@
  </v-card>
 </template>
  
- 
- 
- 
- 
+
 <script>
 export default {
  data: () => ({
@@ -105,7 +102,6 @@ export default {
      {
        color: "#FF0000",
        src: "https://upload.wikimedia.org/wikipedia/pt/7/78/AngraAngelsCry.jpg",
-       link: "https://open.spotify.com/album/1VYp1m8Eo4AApycV8S44a7",
        title: "Angels Cry",
        dt: "1993",
        music1: "Unfinished Allegro",

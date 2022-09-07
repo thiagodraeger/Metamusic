@@ -18,8 +18,8 @@ const routes = [
       },
       {
         path: '/cadastro',
-        name: 'cadastro',
-        component: () => import('../views/cadastro.vue')
+        name: 'Cadastro',
+        component: () => import('../views/Cadastro.vue')
       },
     ]
   },
