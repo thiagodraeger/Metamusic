@@ -41,7 +41,7 @@
                 @click:append="show = !show"
                 @keyup.enter="login"
               ></v-text-field>
-              <v-btn color="btn grey" @click="login"> Login</v-btn>
+              <v-btn color="btn grey" @click="login" href="/home" style="font-size: 15px; color: black;   text-decoration: none;"> Login</v-btn>
             </v-form>
           </v-alert>
           <v-card class="transparent" dark>
