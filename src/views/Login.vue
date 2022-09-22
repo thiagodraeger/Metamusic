@@ -5,8 +5,8 @@
         <v-col
           class="mx-auto pb-1 d-flex justify-center"
         >
-          <v-alert class="transparent">
-            <v-img style="width: 550px"
+          <v-alert class="transparent" >
+            <v-img style="width: 100%"
               src="@/assets/images/logo_meta.png"
             >
             </v-img>
@@ -16,7 +16,7 @@
       <v-row>
         <v-col d-flex>
           <v-alert class="box" white>
-            <v-form style="width:45rem">
+            <v-form style="width:50vw">
               <v-text-field
                 class="input-field"
                 rounded  
