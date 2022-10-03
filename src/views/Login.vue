@@ -9,7 +9,7 @@
             <v-img style="width: 100%"
               src="@/assets/images/logo_meta.png"
             >
-            </v-img>
+            </v-img> 
           </v-alert>
         </v-col>
       </v-row>

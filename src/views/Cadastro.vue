@@ -1,6 +1,6 @@
 <template>
   <v-container fill-height fluid text-center>
-    <v-container class="cont">
+    <v-container>
       <v-row>
           <v-col class="mx-auto pb-1 d-flex justify-center">
               <h1>Cadastre-se aqui:</h1>
@@ -9,7 +9,7 @@
       <v-row>
         <v-col d-flex>
           <v-alert class="box" white>
-            <v-form style="width:45rem">
+            <v-form style="width:50vw">
               <v-text-field
                 rounded  
                 class="input-field mt-5 mb-5"
@@ -106,10 +106,6 @@ a:hover {
 h1{
   color: white;
   }  
-.cont{
-  width: 47rem;
-  border-radius: 30px; 
-}
 .box{
   background-color:transparent;
   padding:0;
