@@ -2,29 +2,25 @@
   <v-container fill-height fluid text-center>
     <v-container>
       <v-row>
-        <v-col
-          class="mx-auto pb-1 d-flex justify-center"
-        >
-          <v-alert class="transparent" >
-            <v-img style="width: 100%"
-              src="@/assets/images/logo_meta.png"
-            >
-            </v-img> 
+        <v-col class="mx-auto pb-1 d-flex justify-center">
+          <v-alert class="transparent">
+            <v-img style="width: 100%" src="@/assets/images/logo_meta.png">
+            </v-img>
           </v-alert>
         </v-col>
       </v-row>
       <v-row>
         <v-col d-flex>
           <v-alert class="box" white>
-            <v-form style="width:50vw">
+            <v-form style="width: 50vw">
               <v-text-field
                 class="input-field"
-                rounded  
+                rounded
                 solo
                 placeholder="Email"
                 label="Email"
-                v-model="user.email"
-                @keyup.enter="login"
+                v-model="user.username"
+                @keyup.enter="submitLogin"
                 hide-details="auto"
               >
               </v-text-field>
@@ -39,9 +35,15 @@
                 :type="show ? 'text' : 'password'"
                 :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="show = !show"
-                @keyup.enter="login"
+                @keyup.enter="submitLogin"
               ></v-text-field>
-              <v-btn color="btn grey" @click="login" href="/home" style="font-size: 15px; color: black;   text-decoration: none;"> Login</v-btn>
+              <v-btn
+                color="btn grey"
+                @click="submitLogin"
+                style="font-size: 15px; color: black; text-decoration: none"
+              >
+                Login</v-btn
+              >
             </v-form>
           </v-alert>
           <v-card class="transparent" dark>
@@ -64,6 +66,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -72,6 +76,17 @@ export default {
       errorLogin: false,
       novaConta: false,
     };
+  },
+  methods: {
+    ...mapActions("auth", ["login"]),
+    async submitLogin() {
+      try {
+        await this.login(this.user);
+        this.$router.push({ path: "/perfil" });
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
 };
 </script>
@@ -92,22 +107,20 @@ a:hover {
   text-decoration: underline;
 }
 
-.box{
-  background-color:transparent;
-  padding:0;
+.box {
+  background-color: transparent;
+  padding: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-content: center;
-  
 }
-.input-field{
-  background-color:white;
+.input-field {
+  background-color: white;
   border-radius: 40px;
   margin: 2%;
-
 }
-.text-fieldct{
+.text-fieldct {
   width: 100%;
 }
 </style>

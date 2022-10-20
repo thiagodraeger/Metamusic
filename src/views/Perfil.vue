@@ -13,8 +13,8 @@
             >
             </v-img>
             <v-col>
-              <v-text-field label="Nome" dark v-model="nome" outlined dense></v-text-field>
-              <v-text-field label="Email" dark v-model="email" outlined dense></v-text-field>
+              <v-text-field label="Nome" dark v-model="newUser.username" outlined dense></v-text-field>
+              <v-text-field label="Senha" dark v-model="newUser.password" outlined dense></v-text-field>
               <v-textarea outlined dense>
               <template v-slot:label>
                 <div>
@@ -22,7 +22,7 @@
                 </div>
               </template>
               </v-textarea>
-              <v-btn color="blue" @click="salvarPerfil"> Salvar</v-btn>
+              <v-btn color="blue" @click="verificarAtualizacao">Salvar</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -32,7 +32,34 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 
+export default {
+  created() {
+    this.newUser.username = this.user.username
+    this.newUser.password = this.user.password
+  },
+  data() {
+    return {
+      newUser: {
+        username: "",
+        password: "",
+      }
+    }
+  },
+  computed: {
+    ...mapState("auth", ["user"]),
+  },
+  methods: {
+    ...mapActions("auth", ["updateInfo"]),
+    verificarAtualizacao() {
+      if (this.user.username != this.newUser.username || this.user.password != this.newUser.password) {
+        this.updateInfo(this.newUser)
+        console.log("DEU")
+      }
+    }
+  }
+};
 </script>
 
 <style>

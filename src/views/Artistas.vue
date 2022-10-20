@@ -4,15 +4,17 @@
     <v-container fluid>
       <v-row dense>
         <v-col v-for="banda in bandas" :key="banda.id" cols="3">
-          <v-card link :to="banda.to">
+          <v-card link :to="`/artistas/${banda.id}`">
             <v-img
-              :src="banda.src"
+              :src="imagemFixa"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.5)"
               height="250px"
               
             >
-              <v-card-title v-text="banda.nome"></v-card-title>
+              <v-card-title v-text="banda.nome_banda"></v-card-title>
+              <v-card-subtitle v-text="banda.desc_banda"></v-card-subtitle>
+              <v-card-subtitle v-text="banda.ano_criacao"></v-card-subtitle>
             </v-img>
 
             <!-- <v-card-actions>
@@ -41,55 +43,18 @@
 </template>
 
 <script>
+import BandaService from '@/api/banda'
+const bandaService = new BandaService()
 export default {
   data() {
     return {
-      bandas: [
-        {
-          id: 1,
-          nome: "Angra",
-          pais: "Brasil",
-          src: require('@/assets/images/angra.jpg'),
-          to: "/Angra",
-        },
-        {
-          id: 2,
-          nome: "Shaman",
-          pais: "Brasil",
-          src: require('@/assets/images/Shaman.jpg'),
-          to: "/Shaman",
-        },
-        {
-          id: 3,
-          nome: "Edguy",
-          pais: "Alemanha",
-          src: require('@/assets/images/edguy.jpg'),
-          to: "/Edguy",
-        },
-        {
-          id: 4,
-          nome: "Blind Guardian",
-          pais: "Alemanha",
-          src: require('@/assets/images/blindguardian.jpg'),
-          to: "/BlindGuardian",
-        },
-        {
-          id: 5,
-          nome: "Helloween",
-          pais: "Alemanha",
-          src: require('@/assets/images/helloween.jpg'),
-          to: "/Helloween",
-        },
-        {
-          id: 6,
-          nome: "Symfonia",
-          pais: "Finlândia / Brasil",
-          src: require('@/assets/images/synfonia.jpg'),
-          to: "/Synfonia",
-        },
-      ],
+      imagemFixa: require('@/assets/images/angra.jpg'),
+      bandas: [],
     };
   },
+  async created() {
+    this.bandas = await bandaService.buscarBandas()
+  }
 };
 </script>
 

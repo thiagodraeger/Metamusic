@@ -41,6 +41,11 @@ const routes = [
         component: () => import('@/views/Artistas.vue')
       },
       {
+        path: '/artistas/:id',
+        name: 'ArtistaDetail',
+        component: () => import('@/views/Angra.vue')
+      },
+      {
         path: '/Angra',
         name: 'Angra',
         component: () => import('@/views/Angra.vue')

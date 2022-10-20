@@ -2,7 +2,7 @@
  <v-card :loading="loading" class="mx-auto" color="#121212">
    <v-img height="300" position="right 50% top 25%" src="https://rollingstone.uol.com.br/media/uploads/banda_angra_foto_henrique_grandi.jpg"></v-img>
  
-   <v-card-title class="white--text"> Angra
+   <v-card-title class="white--text"> {{ banda.nome_banda }} - {{ $route.params.id }}
      <form action="https://open.spotify.com/artist/7IAXZaLTb6nkJr8RmVPn5y">
        <v-icon
          display="flex"
@@ -16,7 +16,7 @@
    </v-card-title>
 
    <v-card-text class="white--text">
-     <v-row align="center" class="mx-0"> (1991 - atualmente) </v-row>
+     <v-row align="center" class="mx-0"> ({{banda.ano_criacao}} - atualmente) </v-row>
  
      <div class="my-4 text-subtitle-1">Brasil</div>
  
@@ -95,9 +95,13 @@
  
 
 <script>
+import BandaService from '@/api/banda'
+const bandaService = new BandaService()
 export default {
  data: () => ({
    show: false,
+   loading: false,
+   banda: {},
    items: [
      {
        color: "#FF0000",
@@ -149,9 +153,15 @@ export default {
      },
    ],
  
-   methods: {
-     enviar() {},
-   },
+   
  }),
+ methods: {
+    async buscarInfoBanda() {
+      this.banda = await bandaService.buscarBandaPorId(this.$route.params.id)
+    }
+   },
+   async mounted() {
+    await this.buscarInfoBanda()
+   }
 };
 </script>
