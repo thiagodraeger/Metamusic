@@ -13,12 +13,12 @@
         </v-col>
       </v-row>
     </v-container>
-<!-- NEWS -->
+<!-- NEWS-->
     <v-card-title class="pb-0">NEWS</v-card-title>
     <v-divider color="white"></v-divider>
     <v-container fluid>
       <v-row dense>
-        <v-col v-for="noticia in noticias" :key="noticia.title" cols="4">
+        <v-col v-for="noticia in noticias" :key="noticia.title"  cols="4"> <!-- cols="12"-->
           <v-card link :to="noticia.to" color="#171717" outlined>
             <v-container fluid>
               <v-img height="250" :src="noticia.src"></v-img>

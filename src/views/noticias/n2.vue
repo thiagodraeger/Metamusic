@@ -26,7 +26,18 @@
     
    </div>
       </v-card-text>
-    
+    <v-divider></v-divider>
+  <v-container fluid>
+    <v-form>
+      <v-textarea
+          auto-grow
+          label="Adicione um comentário..."
+          rows="1"
+          row-height="2"
+        >
+        </v-textarea>
+    </v-form>
+  </v-container>
     </v-card>
    </template>
     

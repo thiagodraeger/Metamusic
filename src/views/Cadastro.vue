@@ -45,19 +45,6 @@
                 @click:append="show = !show"
                 @keyup.enter="login"
               ></v-text-field>
-              <v-text-field
-                rounded
-                solo
-                placeholder="Confirmar Senha"
-                class="input-field mt-5 mb-5"
-                hide-details="auto"
-                label="Confirmar Senha"
-                v-model="user.cpassword"
-                :type="show ? 'text' : 'password'"
-                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="show = !show"
-                @keyup.enter="login"
-              ></v-text-field>
               <v-btn color="grey" @click="Cadastrar" href="/home" style="font-size: 15px; color: black;   text-decoration: none;">Cadastrar </v-btn>
             </v-form>
           </v-alert>
