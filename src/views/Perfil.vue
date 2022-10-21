@@ -14,7 +14,12 @@
             </v-img>
             <v-col>
               <v-text-field label="Nome" dark v-model="newUser.username" outlined dense></v-text-field>
-              <v-text-field label="Senha" dark v-model="newUser.password" outlined dense></v-text-field>
+              <v-text-field label="Senha" dark v-model="newUser.password" 
+              :type="show ? 'text' : 'password'"
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show = !show"
+              outlined dense 
+              ></v-text-field>
               <v-textarea outlined dense>
               <template v-slot:label>
                 <div>
@@ -44,9 +49,13 @@ export default {
       newUser: {
         username: "",
         password: "",
-      }
+      },
+      show: false,
     }
   },
+
+
+  
   computed: {
     ...mapState("auth", ["user"]),
   },

@@ -17,8 +17,8 @@
                 class="input-field"
                 rounded
                 solo
-                placeholder="Email"
-                label="Email"
+                placeholder="Nome"
+                label="Nome"
                 v-model="user.username"
                 @keyup.enter="submitLogin"
                 hide-details="auto"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="pa-4 white--text" fluid>Artistas</h1>
+    <h1 class="pa-4 white--text" fluid>Bandas</h1>
     <v-container fluid>
       <v-row dense>
         <v-col v-for="banda in bandas" :key="banda.id" cols="3">
@@ -13,27 +13,9 @@
               
             >
               <v-card-title v-text="banda.nome_banda"></v-card-title>
-              <v-card-subtitle v-text="banda.desc_banda"></v-card-subtitle>
+              <!-- <v-card-subtitle v-text="banda.desc_banda"></v-card-subtitle> -->
               <v-card-subtitle v-text="banda.ano_criacao"></v-card-subtitle>
             </v-img>
-
-            <!-- <v-card-actions>
-              <v-spacer></v-spacer>
-
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
-
-              <v-btn icon>
-                <v-.h1 {
-                color: white;
-                }icon>mdi-bookmark</v-icon>
-              </v-btn>
-
-              <v-btn icon>
-                <v-icon>mdi-share-variant</v-icon>
-              </v-btn>
-            </v-card-actions> -->
 
           </v-card>
         </v-col>

@@ -40,7 +40,7 @@ export default {
       sidebar: true,
       items: [
         { title: "Home", icon: "mdi-home", to: "/home" },
-        { title: "Artistas", icon: "mdi-account-group", to: "/artistas" },
+        { title: "Bandas", icon: "mdi-account-group", to: "/bandas" },
         { title: "Perfil", icon: "mdi-account-box", to: "/perfil" },
       ],
     };

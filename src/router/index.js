@@ -36,44 +36,19 @@ const routes = [
         component: () => import('../views/Perfil.vue')
       },
       {
-        path: '/artistas',
-        name: 'Artistas',
-        component: () => import('@/views/Artistas.vue')
+        path: '/bandas',
+        name: 'Bandas',
+        component: () => import('@/views/Bandas.vue')
       },
       {
         path: '/artistas/:id',
         name: 'ArtistaDetail',
-        component: () => import('@/views/Angra.vue')
-      },
-      {
-        path: '/Angra',
-        name: 'Angra',
-        component: () => import('@/views/Angra.vue')
+        component: () => import('@/views/Base.vue')
       },
       {
         path: '/Shaman',
         name: 'Shaman',
         component: () => import('@/views/Shaman.vue')
-      },
-      {
-        path: '/Edguy',
-        name: 'Edguy',
-        component: () => import('@/views/Edguy.vue')
-      },
-      {
-        path: '/BlindGuardian',
-        name: 'BlindGuardian',
-        component: () => import('@/views/BlindGuardian.vue')
-      },
-      {
-        path: '/Helloween',
-        name: 'Helloween',
-        component: () => import('@/views/Helloween.vue')
-      },
-      {
-        path: '/Synfonia',
-        name: 'Synfonia',
-        component: () => import('@/views/Synfonia.vue')
       },
       {
         path: '/home',

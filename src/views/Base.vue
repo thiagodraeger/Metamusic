@@ -16,21 +16,12 @@
    </v-card-title>
 
    <v-card-text class="white--text">
-     <v-row align="center" class="mx-0"> ({{banda.ano_criacao}} - atualmente) </v-row>
+     <v-row align="center" class="mx-0"> Criada em{{banda.ano_criacao}}</v-row>
  
      <div class="my-4 text-subtitle-1">Brasil</div>
  
      <div>
-       Angra é uma banda brasileira de metal, formada na cidade de São Paulo em
-       1991, pelos musicos Andre Matos (Vocalista do viper entre 1985-1990),
-       Rafael Bittencourt e André Linhares. A banda foi formada com a proposta
-       de fundir a agressividade do heavy metal, os ritmos étnicos brasileiros
-       e a sofisticação da música erudita.
-       <br />
-       A banda atualmente esta na sua terceira formação, formada pelos musicos
-       Rafael Bittencourt (1991-presente), Felipe Andreoli (2001-presente),
-       Fabio Lione (2013-presente), Bruno Valverde (2014-presente), Marcelo
-       Barbosa (2015-presente).
+      {{banda.desc_banda}}
      </div>
    </v-card-text>
  
