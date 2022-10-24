@@ -16,13 +16,10 @@
    </v-card-title>
 
    <v-card-text class="white--text">
-     <v-row align="center" class="mx-0"> Criada em{{banda.ano_criacao}}</v-row>
+     <v-row align="center" class="mx-0  text-subtitle-1"> Criada em {{banda.ano_criacao}}</v-row>
  
-     <div class="my-4 text-subtitle-1">Brasil</div>
- 
-     <div>
-      {{banda.desc_banda}}
-     </div>
+     <div class="my-4">{{banda.desc_banda}}</div>
+
    </v-card-text>
  
    <v-container>
@@ -109,38 +106,6 @@ export default {
        music8: "Streets of Tomorrow",
        music9: "Evil Warning",
        music10: "Lasting Child",
-     },
-     {
-       color: "#FFFFE0",
-       src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPGuhJO_gplxhjdr8gT3WkAAuf8Y7zxN_rNaq_xE5s92jRY0zBklwxVsWjjW7mkVc7tds&usqp=CAU",
-       title: "Holy Land",
-       dt: "1996",
-       music1: "Crossing",
-       music2: "Nothing to Say",
-       music3: "Silence and Distance",
-       music4: "Carolina IV",
-       music5: "Holy Land",
-       music6: "The Shaman",
-       music7: "Make Believe",
-       music8: "Z.I.T.O.",
-       music9: "Deep Blue",
-       music10: "Lullaby for Lucifer",
-     },
-     {
-       color: "#8B0000",
-       src: "https://roadie-metal.com/wp-content/uploads/2017/05/AngraFireworks-capa.jpg",
-       title: "Fireworks",
-       dt: "1998",
-       music1: "Wings of Reality",
-       music2: "Petrified Eyes",
-       music3: "Lisbon",
-       music4: "Metal Icarus",
-       music5: "Paradise",
-       music6: "Mystery Machine",
-       music7: "Fireworks",
-       music8: "Extreme Dream",
-       music9: "Gentle Change",
-       music10: "Speed",
      },
    ],
  
