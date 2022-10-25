@@ -14,19 +14,13 @@
             </v-img>
             <v-col>
               <v-text-field label="Nome" dark v-model="newUser.username" outlined dense></v-text-field>
+              <v-text-field label="Email" dark v-model="newUser.email" outlined dense></v-text-field>
               <v-text-field label="Senha" dark v-model="newUser.password" 
               :type="show ? 'text' : 'password'"
               :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="show = !show"
               outlined dense 
               ></v-text-field>
-              <v-textarea outlined dense>
-              <template v-slot:label>
-                <div>
-                  Descrição
-                </div>
-              </template>
-              </v-textarea>
               <v-btn color="blue" @click="verificarAtualizacao">Salvar</v-btn>
             </v-col>
           </v-row>
@@ -42,12 +36,14 @@ import { mapActions, mapState } from "vuex";
 export default {
   created() {
     this.newUser.username = this.user.username
+    this.newUser.email = this.user.email
     this.newUser.password = this.user.password
   },
   data() {
     return {
       newUser: {
         username: "",
+        email: "",
         password: "",
       },
       show: false,
@@ -62,7 +58,7 @@ export default {
   methods: {
     ...mapActions("auth", ["updateInfo"]),
     verificarAtualizacao() {
-      if (this.user.username != this.newUser.username || this.user.password != this.newUser.password) {
+      if (this.user.username != this.newUser.username || this.user.password != this.newUser.password || this.user.email != this.newUser.email){
         this.updateInfo(this.newUser)
         console.log("DEU")
       }

@@ -24,56 +24,17 @@
  
    <v-container>
      <v-row dense>
-       <v-col v-for="(item, i) in items" :key="i" cols="6">
+       <v-col v-for="(item, i) in items" :key="i" cols="2">
          <v-card :color="item.color">
-           <div class="d-flex flex-no-wrap justify-space-between">
-             <div>
-               <v-card-title
-                 class="text-h5"
-                 v-text="item.title"
-               ></v-card-title>
- 
-               <v-card-subtitle v-text="item.dt"></v-card-subtitle>
- 
-               <v-card-actions>
-                 <v-btn
-                   icon
-                   @click="show = !show"
-                   width="40px"
-                   height="40px"
-                   class="mt-3"
-                 >
-                   <v-icon>{{
-                     show ? "mdi-chevron-up" : "mdi-chevron-down"
-                   }}</v-icon>
-                 </v-btn>
-               </v-card-actions>
- 
-               <v-expand-transition>
-                 <div v-show="show">
-                   <v-card-text>
-                     <ul v-text="item.music1"></ul>
-                     <ul v-text="item.music2"></ul>
-                     <ul v-text="item.music3"></ul>
-                     <ul v-text="item.music4"></ul>
-                     <ul v-text="item.music5"></ul>
-                     <ul v-text="item.music6"></ul>
-                     <ul v-text="item.music7"></ul>
-                     <ul v-text="item.music8"></ul>
-                     <ul v-text="item.music9"></ul>
-                     <ul v-text="item.music10"></ul>
-                     <ul v-text="item.music11"></ul>
-                     <ul v-text="item.music12"></ul>
-                     <ul v-text="item.music13"></ul>
-                   </v-card-text>
-                 </div>
-               </v-expand-transition>
-             </div>
- 
-             <v-avatar class="ma-3" size="130" tile>
-               <v-img :src="item.src"></v-img>
-             </v-avatar>
-           </div>
+            <div class="d-flex flex-no-wrap justify-space-between">
+              <v-avatar class="ma-2" size="170" tile>
+                <v-img :src="item.src" class="border-radius-5"></v-img>
+              </v-avatar> 
+            </div>
+            <div>
+              <v-card-title v-text="item.title"></v-card-title>
+              <v-card-subtitle v-text="item.dt"></v-card-subtitle> 
+            </div>
          </v-card>
        </v-col>
      </v-row>
