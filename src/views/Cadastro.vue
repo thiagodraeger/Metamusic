@@ -17,7 +17,7 @@
                 placeholder="Nome"
                 label="Nome"
                 v-model="user.Nome"
-                @keyup.enter="login"
+                @keyup.enter="novaConta"
                 hide-details="auto"
               >
               </v-text-field>
@@ -28,7 +28,7 @@
                 placeholder="Email"
                 label="Email"
                 v-model="user.email"
-                @keyup.enter="login"
+                @keyup.enter="novaConta"
                 hide-details="auto"
               >
               </v-text-field>
@@ -43,7 +43,7 @@
                 :type="show ? 'text' : 'password'"
                 :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="show = !show"
-                @keyup.enter="login"
+                @keyup.enter="novaConta"
               ></v-text-field>
               <v-btn color="grey" @click="Cadastrar" href="/home" style="font-size: 15px; color: black;   text-decoration: none;">Cadastrar </v-btn>
             </v-form>
