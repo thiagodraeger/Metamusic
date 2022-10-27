@@ -1,7 +1,7 @@
 <template>
  <v-card :loading="loading" class="mx-auto" color="#121212">
    <v-img height="300" position="right 50% top 25%" :src="banda.capa_banda ? banda.capa_banda.url : null"></v-img>
-   <v-card-title class="white--text"> {{ banda.nome_banda }} - {{ banda.link_spotify}}
+   <v-card-title class="white--text"> {{ banda.nome_banda }}
      <form action="https://open.spotify.com/artist/7IAXZaLTb6nkJr8RmVPn5y">
        <v-icon
          display="flex"
