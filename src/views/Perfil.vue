@@ -6,15 +6,15 @@
       <v-container class="mt-4">
         <v-col>
           <v-row>
-            <v-img max-height="300" max-width="300"
+            <v-img max-height="180" max-width="180"
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-            class="mb-5"
+            class="p-5"
             style="border-radius: 1000px"
             >
             </v-img>
-            <v-col>
+            <v-col style="padding-left: 50px;">
               <v-text-field label="Nome" dark v-model="newUser.username" outlined dense></v-text-field>
-              <v-text-field label="Email" dark v-model="newUser.email" outlined dense></v-text-field>
+              <!-- <v-text-field label="Email" dark v-model="newUser.email" outlined dense></v-text-field> -->
               <v-text-field label="Senha" dark v-model="newUser.password" 
               :type="show ? 'text' : 'password'"
               :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
@@ -42,9 +42,6 @@ export default {
   data() {
     return {
       newUser: {
-        username: "",
-        email: "",
-        password: "",
       },
       show: false,
     }

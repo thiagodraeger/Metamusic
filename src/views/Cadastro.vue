@@ -18,6 +18,7 @@
                 label="Nome"
                 v-model="user.username"
                 hide-details="auto"
+                @keyup.enter="register"
               >
               </v-text-field>
               <v-text-field
@@ -28,6 +29,7 @@
                 label="Email"
                 v-model="user.email"
                 hide-details="auto"
+                @keyup.enter="register"
               >
               </v-text-field>
               <v-text-field
@@ -41,6 +43,7 @@
                 :type="show ? 'text' : 'password'"
                 :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="show = !show"
+                @keyup.enter="register"
               >
               </v-text-field>
               <v-btn
@@ -80,7 +83,7 @@ export default {
         this.$router.push("/");
       } catch (e) {
         console.log(e);
-        alert("algo de errado não está certo.");
+        alert("Campos Faltando ou incorretos");
       }
     },
   },

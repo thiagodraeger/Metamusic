@@ -1,8 +1,7 @@
 <template>
  <v-card :loading="loading" class="mx-auto" color="#121212">
-   <v-img height="300" position="right 50% top 25%" src="https://img.freepik.com/fotos-gratis/parede-texturizada-cinza_53876-88964.jpg?w=2000"></v-img>
- 
-   <v-card-title class="white--text"> {{ banda.nome_banda }} - {{ $route.params.id }}
+   <v-img height="300" position="right 50% top 25%" :src="banda.capa_banda ? banda.capa_banda.url : null"></v-img>
+   <v-card-title class="white--text"> {{ banda.nome_banda }} - {{ banda.link_spotify}}
      <form action="https://open.spotify.com/artist/7IAXZaLTb6nkJr8RmVPn5y">
        <v-icon
          display="flex"
@@ -22,6 +21,7 @@
 
    </v-card-text>
  
+   <v-card-title class="white--text">Discografia</v-card-title>
    <v-container>
      <v-row dense>
        <v-col v-for="(item, i) in items" :key="i" cols="2">
@@ -53,20 +53,10 @@ export default {
    banda: {},
    items: [
      {
-       color: "#FF0000",
-       src: "https://upload.wikimedia.org/wikipedia/pt/7/78/AngraAngelsCry.jpg",
-       title: "Angels Cry",
-       dt: "1993",
-       music1: "Unfinished Allegro",
-       music2: "Carry On",
-       music3: "Time",
-       music4: "Angels Cry",
-       music5: "Stand Away",
-       music6: "Never Understand",
-       music7: "Wuthering Heights",
-       music8: "Streets of Tomorrow",
-       music9: "Evil Warning",
-       music10: "Lasting Child",
+       color: "#9e9e9e",
+       src: "https://www.pindula.co.zw/images/a/a7/No_Image.jpg",
+       title: "Exemplo",
+       dt: "0000",
      },
    ],
  
