@@ -70,6 +70,7 @@ export default {
   data() {
     return {
       user: {},
+      show: false,
     };
   },
   methods: {
