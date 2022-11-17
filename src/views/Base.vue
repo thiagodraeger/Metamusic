@@ -22,31 +22,32 @@
       </v-row>
     </v-img>
 
-    <v-card-title class="white--text"> Sobre a banda</v-card-title>
+    <v-card-title class="white--text titulo"> Sobre a banda</v-card-title>
     <v-card-text class="white--text">
-      <v-row align="center" class="mx-0 text-subtitle-1">
+      <v-row align="center" class="mx-0 text-subtitle-1 ano">
         Criada em {{ banda.ano_criacao }}</v-row
       >
 
-      <div class="my-4">{{ banda.desc_banda }}</div>
+      <div class="my-4 texto">{{ banda.desc_banda }}</div>
     </v-card-text>
 
-    <v-card-title class="white--text">Discografia</v-card-title>
+    <v-card-title class="white--text titulo">Discografia</v-card-title>
     <v-container>
       <v-row dense>
-        <v-col v-for="(item, i) in items" :key="i" cols="2">
-          <v-card :color="item.color">
+        <v-col v-for="album in albums" :key="album.id" cols="2">
+          <v-card>
             <div class="d-flex flex-no-wrap justify-space-between">
-              <v-avatar class="ma-2" size="170" tile>
-                <v-img :src="item.src" class="border-radius-5"></v-img>
-              </v-avatar>
+                <v-img
+              :src="album.capa_album ? album.capa_album.url : null"
+              class="border-radius-5"></v-img>
             </div>
             <div>
-              <v-card-title v-text="item.title"></v-card-title>
-              <v-card-subtitle v-text="item.dt"></v-card-subtitle>
+              <v-card-title v-text="album.nome_album"></v-card-title>
+              <v-card-subtitle v-text="album.ano_lancamento"></v-card-subtitle>
             </div>
           </v-card>
         </v-col>
+
       </v-row>
     </v-container>
   </v-card>
@@ -56,11 +57,15 @@
 <script>
 import BandaService from "@/api/banda";
 const bandaService = new BandaService();
+import AlbumService from "@/api/album";
+const albumService = new AlbumService();
+
 export default {
   data: () => ({
     show: false,
     loading: false,
     banda: {},
+    album: [],
     items: [
       {
         color: "#9e9e9e",
@@ -78,6 +83,9 @@ export default {
   async mounted() {
     await this.buscarInfoBanda();
   },
+  async created() {
+      this.albums = await albumService.buscarAlbums();
+  }
 };
 </script>
 <style scoped>
@@ -90,5 +98,16 @@ export default {
   padding: 25px;
   backdrop-filter: blur(1px);
   background-color: rgba(0, 0, 0, 0.4);
+}
+.texto {
+font-size: 17px;
+}
+
+.ano {
+  font-weight: bold;
+}
+
+.titulo{
+  text-decoration: underline;
 }
 </style>

@@ -4,7 +4,7 @@
     <v-container fluid>
       <v-row dense>
         <v-col v-for="banda in bandas" :key="banda.id" cols="3">
-          <v-card link :to="`/artistas/${banda.id}`">
+          <v-card link :to="`/bandas/${banda.id}`">
             <v-img
               :src="banda.foto ? banda.foto.url : null"
               class="white--text align-end"
@@ -12,7 +12,6 @@
               height="250px"
             >
               <v-card-title v-text="banda.nome_banda"></v-card-title>
-              <!-- <v-card-subtitle v-text="banda.desc_banda"></v-card-subtitle> -->
               <v-card-subtitle v-text="banda.ano_criacao"></v-card-subtitle>
             </v-img>
           </v-card>
@@ -28,7 +27,6 @@
   export default {
     data() {
       return {
-        imagemFixa: require("@/assets/images/angra.jpg"),
         bandas: [],
       };
     },

@@ -41,14 +41,9 @@ const routes = [
         component: () => import('@/views/Bandas.vue')
       },
       {
-        path: '/artistas/:id',
-        name: 'ArtistaDetail',
+        path: '/bandas/:id',
+        name: 'BandaDetail',
         component: () => import('@/views/Base.vue')
-      },
-      {
-        path: '/Shaman',
-        name: 'Shaman',
-        component: () => import('@/views/Shaman.vue')
       },
       {
         path: '/home',
@@ -56,19 +51,14 @@ const routes = [
         component: Home
       },
       {
+        path: '/noticias/:id',
+        name: 'NoticiaDetail',
+        component: () => import('@/views/Home.vue')
+      },
+      {
         path: '/noticias/n1',
         name: 'n1',
         component: () => import('@/views/noticias/n1.vue')
-      },
-      {
-        path: '/noticias/n2',
-        name: 'n2',
-        component: () => import('@/views/noticias/n2.vue')
-      },
-      {
-        path: '/noticias/n3',
-        name: 'n3',
-        component: () => import('@/views/noticias/n3.vue')
       },
     ]
   },
