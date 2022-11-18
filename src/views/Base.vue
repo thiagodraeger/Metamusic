@@ -1,9 +1,6 @@
 <template>
   <v-card :loading="loading" class="mx-auto" color="#121212">
-    <v-img
-      height="400"
-      :src="banda.capa_banda ? banda.capa_banda.url : null"
-    >
+    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.url : null">
       <v-row>
         <v-card-title class="nomebanda">
           {{ banda.nome_banda }}
@@ -37,9 +34,10 @@
         <v-col v-for="album in albums" :key="album.id" cols="2">
           <v-card>
             <div class="d-flex flex-no-wrap justify-space-between">
-                <v-img
-              :src="album.capa_album ? album.capa_album.url : null"
-              class="border-radius-5"></v-img>
+              <v-img
+                :src="album.capa_album ? album.capa_album.url : null"
+                class="border-radius-5"
+              ></v-img>
             </div>
             <div>
               <v-card-title v-text="album.nome_album"></v-card-title>
@@ -47,7 +45,6 @@
             </div>
           </v-card>
         </v-col>
-
       </v-row>
     </v-container>
   </v-card>
@@ -65,7 +62,7 @@ export default {
     show: false,
     loading: false,
     banda: {},
-    album: [],
+    albums: [],
     items: [
       {
         color: "#9e9e9e",
@@ -84,8 +81,8 @@ export default {
     await this.buscarInfoBanda();
   },
   async created() {
-      this.albums = await albumService.buscarAlbums();
-  }
+    this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
+  },
 };
 </script>
 <style scoped>
@@ -100,14 +97,14 @@ export default {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .texto {
-font-size: 17px;
+  font-size: 17px;
 }
 
 .ano {
   font-weight: bold;
 }
 
-.titulo{
+.titulo {
   text-decoration: underline;
 }
 </style>

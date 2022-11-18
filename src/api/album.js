@@ -1,13 +1,9 @@
 import axios from "axios";
 
 export default class AlbumService {
-  async buscarAlbums() {
+  async buscarAlbum(id) {
     const { data } = await axios.get("Album/");
-    return data;
-  }
-  async buscarAlbumPorId(id) {
-    const { data } = await axios.get(`Album/${id}`);
-    return data;
+    return data.filter(album => album.banda === id);
   }
 }
 
