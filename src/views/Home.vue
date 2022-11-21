@@ -19,7 +19,7 @@
     <v-container fluid>
       <v-row dense>
         <v-col v-for="noticia in noticias" :key="noticia.id"  cols="4"> <!-- cols="12"-->
-          <v-card link :to="`/noticias/${noticia.id}`" color="#171717" outlined>
+          <v-card link :to="`/noticias/${noticias.id}`" color="#171717" outlined>
             <v-container fluid>
               <v-img height="250" :src="noticia.foto ? noticia.foto.url : null"></v-img>
               <v-card-title v-text="noticia.titulo_noticia"></v-card-title>

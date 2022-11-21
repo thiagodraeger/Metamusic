@@ -53,12 +53,7 @@ const routes = [
       {
         path: '/noticias/:id',
         name: 'NoticiaDetail',
-        component: () => import('@/views/Home.vue')
-      },
-      {
-        path: '/noticias/n1',
-        name: 'n1',
-        component: () => import('@/views/noticias/n1.vue')
+        component: () => import('@/views/noticia.vue')
       },
     ]
   },

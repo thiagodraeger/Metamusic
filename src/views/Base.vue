@@ -32,14 +32,13 @@
     <v-container>
       <v-row dense>
         <v-col v-for="album in albums" :key="album.id" cols="2">
-          <v-card>
+          <v-card class="card">
             <div class="d-flex flex-no-wrap justify-space-between">
               <v-img
                 :src="album.capa_album ? album.capa_album.url : null"
-                class="border-radius-5"
               ></v-img>
             </div>
-            <div>
+            <div class="Album">
               <v-card-title v-text="album.nome_album"></v-card-title>
               <v-card-subtitle v-text="album.ano_lancamento"></v-card-subtitle>
             </div>
@@ -86,6 +85,14 @@ export default {
 };
 </script>
 <style scoped>
+
+.Album{
+  background-color: #171717;
+  color: white;
+}
+.card{
+  border-radius: 15px;
+}
 .nomebanda {
   color: white;
   position: absolute;
