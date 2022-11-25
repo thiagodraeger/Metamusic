@@ -21,7 +21,7 @@
     </v-container>
 
     <!-- loja-->
-    <v-card-title class="pb-0">LOJAS</v-card-title>
+    <!-- <v-card-title class="pb-0">LOJAS</v-card-title>
     <v-divider color="white"></v-divider>
     <v-container class="lojas mt-4">
       <v-row>
@@ -36,7 +36,7 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
     <!-- NEWS-->
     <v-card-title class="pb-0">NEWS</v-card-title>
     <v-divider color="white"></v-divider>

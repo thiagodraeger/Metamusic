@@ -32,7 +32,7 @@
     <v-container>
       <v-row dense>
         <v-col v-for="album in albums" :key="album.id" cols="2">
-          <v-card class="card">
+          <v-card link :to="`/albums/${album.id}`" class="card">
             <div class="d-flex flex-no-wrap justify-space-between">
               <v-img
                 :src="album.capa_album ? album.capa_album.url : null"

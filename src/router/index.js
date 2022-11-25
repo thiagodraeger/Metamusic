@@ -55,6 +55,11 @@ const routes = [
         name: 'NoticiaDetail',
         component: () => import('@/views/noticia.vue')
       },
+      {
+        path: '/albums/:id',
+        name: 'AlbumDetail',
+        component: () => import('@/views/Album.vue')
+      },
     ]
   },
 ]
