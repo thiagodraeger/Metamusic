@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app v-model="sidebar" width="225" color="#0a0a0a" dark>
+    <v-navigation-drawer app v-model="sidebar" width="225" color="#0a0a0a" dark disable-resize-watcher>
       <v-list dense color="#0a0a0a">
         <v-list-item-title align="center">
           <h3>MetaMusic</h3>
