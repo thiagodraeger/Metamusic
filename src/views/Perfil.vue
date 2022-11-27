@@ -14,7 +14,7 @@
             </v-img>
             <v-col style="padding-left: 50px;">
               <v-text-field label="Nome" dark v-model="newUser.username" outlined dense></v-text-field>
-              <v-text-field label="Email" dark v-model="newUser.email" outlined dense></v-text-field>
+              <!-- <v-text-field label="Email" dark v-model="newUser.email" outlined dense></v-text-field> -->
               <v-text-field label="Senha" dark v-model="newUser.password" 
               :type="show ? 'text' : 'password'"
               :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"

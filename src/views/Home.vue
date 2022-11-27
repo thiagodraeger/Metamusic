@@ -11,32 +11,17 @@
             :href="loja.link"
             color="#131313"
             class="ma-4 d-flex align-center"
+          >
+            <v-img :src="loja.src" 
             height="90"
             width="290"
-          >
-            <v-img :src="loja.src" > </v-img>
+            > 
+            </v-img>
           </v-card>
         </v-slide-item>
       </v-slide-group>
     </v-container>
 
-    <!-- loja-->
-    <!-- <v-card-title class="pb-0">LOJAS</v-card-title>
-    <v-divider color="white"></v-divider>
-    <v-container class="lojas mt-4">
-      <v-row>
-        <v-col
-          v-for="loja in lojas"
-          :key="loja.id"
-          cols="2"
-          class="d-flex align-center"
-        >
-          <v-card link :href="loja.link" color="#131313" outlined>
-            <v-img :src="loja.src"> </v-img>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container> -->
     <!-- NEWS-->
     <v-card-title class="pb-0">NEWS</v-card-title>
     <v-divider color="white"></v-divider>
