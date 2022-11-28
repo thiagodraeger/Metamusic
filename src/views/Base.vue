@@ -14,7 +14,6 @@
               >{{ "mdi-spotify" }}
             </v-icon>
           </a>
-          <!-- {{banda.link_spotify}} -->
         </v-card-title>
       </v-row>
     </v-img>

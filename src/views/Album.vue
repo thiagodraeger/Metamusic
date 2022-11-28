@@ -1,5 +1,5 @@
 <template>
-    <v-card></v-card>
+    <v-card> Album</v-card>
 </template>
  
 <script>
