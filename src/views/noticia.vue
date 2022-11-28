@@ -61,16 +61,19 @@
           <v-icon>mdi-send</v-icon>
         </v-btn> -->
       </v-form>
-      <v-card class="mx-auto">
+      <v-card class="mx-auto" flat color="transparent">
         <v-list-item
           three-line
           v-for="(comentario, index) in comentarios"
           :key="index"
         >
           <v-list-item-content>
-            <v-list-item-title>{{ comentario.comentario }}</v-list-item-title>
-            <v-list-item-subtitle>
+            <v-list-item-title>
+              <b>@nomeusuario</b> -
               {{ comentario.data_comentario.split("-").reverse().join("/") }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ comentario.comentario }}
             </v-list-item-subtitle>
           </v-list-item-content>
           <v-btn

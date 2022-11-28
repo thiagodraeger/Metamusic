@@ -4,17 +4,17 @@
       <v-row>
         <v-card-title class="nomebanda">
           {{ banda.nome_banda }}
-          <form action="https://open.spotify.com/artist/7IAXZaLTb6nkJr8RmVPn5y">
+          <a target="_blank" :href="banda.link_spotify">
             <v-icon
               display="flex"
               color="#1DB954"
               type="submit"
               class="spotify pa-2"
-              v-on:click="enviar()"
               size="38px"
-              >{{ "mdi-spotify" }}</v-icon
-            >
-          </form>
+              >{{ "mdi-spotify" }}
+            </v-icon>
+          </a>
+          <!-- {{banda.link_spotify}} -->
         </v-card-title>
       </v-row>
     </v-img>
@@ -48,7 +48,6 @@
     </v-container>
   </v-card>
 </template>
- 
 
 <script>
 import BandaService from "@/api/banda";
@@ -85,12 +84,18 @@ export default {
 };
 </script>
 <style scoped>
+a:link {
+  text-decoration: none;
+}
 
-.Album{
+a:visited {
+  text-decoration: none;
+}
+.Album {
   background-color: #171717;
   color: white;
 }
-.card{
+.card {
   border-radius: 15px;
 }
 .nomebanda {
