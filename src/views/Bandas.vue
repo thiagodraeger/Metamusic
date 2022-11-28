@@ -33,6 +33,8 @@
           accept="image/png, image/jpeg, image/bmp"
           prepend-icon="mdi-camera"
           label="Foto da Banda"
+          v-model="banda.foto"
+          @keydown.enter="CriarBanda"
           >
           </v-file-input>
           <v-text-field
@@ -41,6 +43,8 @@
             label="Nome da Banda"
             outlined
             dense
+            v-model="banda.nome_banda"
+            @keydown.enter="CriarBanda"
           ></v-text-field>
           <v-text-field
             hide-details
@@ -48,6 +52,8 @@
             label="Ano de Criação"
             outlined
             dense
+            v-model="banda.ano_criacao"
+            @keydown.enter="CriarBanda"
           ></v-text-field>
           <v-textarea
           hide-details
@@ -55,6 +61,8 @@
           dense
           outlined
           label="Descrição da Banda"
+          v-model="banda.desc_banda"
+          @keydown.enter="CriarBanda"
         ></v-textarea>
         </v-col>
         <v-card-actions>
@@ -62,10 +70,11 @@
           <v-btn
             color="green darken-1"
             text
-            @click="dialog = false"
+            @click="CriarBanda"
           >
             Adicionar
           </v-btn>
+          <!-- @click="dialog = false" -->
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -95,17 +104,32 @@
 
 <script>
   import BandaService from "@/api/banda";
+  import axios from "axios";
+  
   const bandaService = new BandaService();
   export default {
-    data() {
-      return {
-        bandas: [],
-        dialog: false,
-      };
-    },
     async created() {
       this.bandas = await bandaService.buscarBandas();
     },
+    
+    data() {
+      return {
+        bandas: [],
+        banda: {},
+        dialog: false,
+      };
+    },
+    
+    methods: {
+      async buscarBandas() {
+        const { data } = await axios.get("Banda/");
+        this.bandas = data;
+      },
+      async CriarBanda() {
+        await axios.post("Banda/", this.banda);
+        this.buscarBandas();
+    },
+    }
   };
 </script>
 

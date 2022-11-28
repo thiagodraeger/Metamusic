@@ -57,9 +57,6 @@
           append-outer-icon="mdi-send"
         >
         </v-text-field>
-        <!-- <v-btn @click="comentar" color="secondary" fab x-small dark>
-          <v-icon>mdi-send</v-icon>
-        </v-btn> -->
       </v-form>
       <v-card class="mx-auto" flat color="transparent">
         <v-list-item
