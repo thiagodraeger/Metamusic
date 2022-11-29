@@ -1,5 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import store from "@/store";
+import VueRouter from "vue-router";
+
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 
@@ -10,6 +12,9 @@ const routes = [
   {
     path: '/',
     component: () => import('@/layouts/Blank'),
+    meta: {
+      auth: false,
+    },
     children: [
       {
         path: '/',
@@ -26,8 +31,8 @@ const routes = [
   {
     path: '/',
     component: () => import('@/layouts/Default'),
-    meta:{
-      requiresAuth: false,
+    meta: {
+      auth: true,
     },
     children: [
       {
@@ -63,13 +68,26 @@ const routes = [
     ]
   },
 ]
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
 
-
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.auth)) {
+    if (!store.state.auth.loggedIn) {
+      next({
+        path: "/",
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 
 export default router

@@ -50,8 +50,6 @@ export default {
     async submitLogout() {
       try {
         await this.logout();
-        console.log("Saiu")
-        this.$router.push({ path: "/" });
       } catch (e) {
         console.log(e);
       }
