@@ -14,9 +14,21 @@
                 rounded
                 class="input-field mt-5 mb-5"
                 solo
-                placeholder="Nome"
-                label="Nome"
+                placeholder="Apelido"
+                label="Apelido"
                 v-model="user.username"
+                hide-details="auto"
+                @keyup.enter="submitRegister"
+                type="text"
+              >
+              </v-text-field>
+              <v-text-field
+                rounded
+                class="input-field mt-5 mb-5"
+                solo
+                placeholder="Email"
+                label="Email"
+                v-model="user.email"
                 hide-details="auto"
                 @keyup.enter="submitRegister"
                 type="text"
@@ -40,7 +52,7 @@
                 placeholder="Confirme senha"
                 class="input-field mt-5 mb-5"
                 hide-details="auto"
-                label="Senha"
+                label="Confirmar Senha"
                 v-model="user.password2"
                 :type="show ? 'text' : 'password'"
                 :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
