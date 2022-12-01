@@ -10,18 +10,49 @@
         <v-col d-flex>
           <v-alert class="box" white>
             <v-form style="width: 50vw">
-              <v-text-field rounded class="input-field mt-5 mb-5" solo placeholder="Nome" label="Nome"
-                v-model="user.username" hide-details="auto" @keyup.enter="register" type="text">
+              <v-text-field
+                rounded
+                class="input-field mt-5 mb-5"
+                solo
+                placeholder="Nome"
+                label="Nome"
+                v-model="user.username"
+                hide-details="auto"
+                @keyup.enter="submitRegister"
+                type="text"
+              >
               </v-text-field>
-              <v-text-field rounded class="input-field mt-5 mb-5" solo placeholder="Senha" label="Senha"
-                v-model="user.password1" hide-details="auto" @keyup.enter="register" :type="show ? 'text' : 'password'">
+              <v-text-field
+                rounded
+                class="input-field mt-5 mb-5"
+                solo
+                placeholder="Senha"
+                label="Senha"
+                v-model="user.password1"
+                hide-details="auto"
+                @keyup.enter="submitRegister"
+                :type="show ? 'text' : 'password'"
+              >
               </v-text-field>
-              <v-text-field rounded solo placeholder="Confirme senha" class="input-field mt-5 mb-5" hide-details="auto"
-                label="Senha" v-model="user.password2" :type="show ? 'text' : 'password'"
-                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show = !show" @keyup.enter="register">
+              <v-text-field
+                rounded
+                solo
+                placeholder="Confirme senha"
+                class="input-field mt-5 mb-5"
+                hide-details="auto"
+                label="Senha"
+                v-model="user.password2"
+                :type="show ? 'text' : 'password'"
+                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="show = !show"
+                @keyup.enter="submitRegister"
+              >
               </v-text-field>
-              <v-btn color="grey" @click="register"
-                style="font-size: 15px; color: black; text-decoration: none">Cadastrar
+              <v-btn
+                color="grey"
+                @click="submitRegister"
+                style="font-size: 15px; color: black; text-decoration: none"
+                >Cadastrar
               </v-btn>
             </v-form>
           </v-alert>
@@ -39,7 +70,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -48,13 +80,14 @@ export default {
     };
   },
   methods: {
-    async register() {
+    ...mapActions("auth", ["register"]),
+
+    async submitRegister() {
       try {
-        await axios.post("register/", this.user);
-        this.$router.push("/");
+        await this.register(this.user);
+        this.$router.push({ path: "/perfil" });
       } catch (e) {
         console.log(e);
-        alert("Campos Faltando ou incorretos");
       }
     },
   },

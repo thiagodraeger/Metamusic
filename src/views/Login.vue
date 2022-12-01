@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["login"]),
+
     async submitLogin() {
       try {
         await this.login(this.user);
