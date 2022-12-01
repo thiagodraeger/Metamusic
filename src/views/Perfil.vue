@@ -13,13 +13,15 @@
             <v-col style="padding-left: 50px;">
               <v-text-field label="Apelido" dark v-model="newUser.username" outlined dense hide-details
                 class="mb-3"></v-text-field>
+              <v-text-field label="Email" dark v-model="newUser.email" outlined dense hide-details
+                class="mb-3"></v-text-field>
               <v-text-field label="Nome" dark v-model="newUser.first_name" outlined dense hide-details
                 class="mb-3"></v-text-field>
               <v-text-field label="Sobrenome" dark v-model="newUser.last_name" outlined dense hide-details
                 class="mb-3"></v-text-field>
 
               <v-btn color="blue" @click="updateInfo">Salvar</v-btn>
-              <v-btn color="red" @click="deleteUserAccount" class="deletar">Deletar</v-btn>
+              <v-btn color="red" @click="deleteUserInfo" class="deletar">Deletar</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -66,9 +68,10 @@ export default {
         console.log(e);
       }
     },
-    async deleteUserAccount() {
+    async deleteUserInfo() {
       try {
-        await this.deleteUser();
+        await this.deleteUser(this.user);
+        this.$router.push({ path: "/" });
       } catch (e) {
         console.log(e);
       }
