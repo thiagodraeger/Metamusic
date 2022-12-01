@@ -2,11 +2,11 @@ import axios from "axios";
 
 export default class NoticiaService {
   async buscarNoticias() {
-    const { data } = await axios.get("Noticia/");
+    const { data } = await axios.get("api/Noticia/");
     return data;
   }
   async buscarNoticiaPorId(id) {
-    const { data } = await axios.get(`Noticia/${id}`);
+    const { data } = await axios.get(`api/Noticia/${id}`);
     return data;
   }
 }

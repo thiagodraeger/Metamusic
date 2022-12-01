@@ -29,9 +29,8 @@
           class="mb-3"
           dense
           outlined
-          :rules="rules"
           accept="image/png, image/jpeg, image/bmp"
-          prepend-icon="mdi-camera"
+          prepend-icon="mdi-upload"
           label="Foto da Banda"
           v-model="banda.foto"
           @keydown.enter="CriarBanda"
@@ -52,6 +51,7 @@
             label="Ano de Criação"
             outlined
             dense
+            type="year"
             v-model="banda.ano_criacao"
             @keydown.enter="CriarBanda"
           ></v-text-field>
@@ -105,7 +105,7 @@
 <script>
   import BandaService from "@/api/banda";
   import axios from "axios";
-  
+
   const bandaService = new BandaService();
   export default {
     async created() {
@@ -122,11 +122,11 @@
     
     methods: {
       async buscarBandas() {
-        const { data } = await axios.get("Banda/");
+        const { data } = await axios.get("api/Banda/");
         this.bandas = data;
       },
       async CriarBanda() {
-        await axios.post("Banda/", this.banda);
+        await axios.post("api/Banda/", this.banda);
         this.buscarBandas();
     },
     }

@@ -50,11 +50,12 @@
         <v-text-field
           auto-grow
           v-model="comentario.comentario"
-          @keydown.enter="comentar"
+          @keydow.enter="comentar"
           label="Adicione um comentário..."
           rows="1"
           row-height="2"
-          append-outer-icon="mdi-send"
+          :append-icon="'mdi-send'"
+          @click:append="comentar"
         >
         </v-text-field>
       </v-form>
@@ -66,7 +67,7 @@
         >
           <v-list-item-content>
             <v-list-item-title>
-              <b>@nomeusuario</b> -
+              <b>@{{ comentario.criado_por.username }}</b> -
               {{ comentario.data_comentario.split("-").reverse().join("/") }}
             </v-list-item-title>
             <v-list-item-subtitle>
@@ -100,6 +101,7 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex"
 
 export default {
   async created() {
@@ -118,22 +120,26 @@ export default {
       },
     ],
   }),
+  computed: {
+    ...mapState("auth", ["user"])
+  },
   methods: {
     async listarComentarios() {
-      const { data } = await axios.get("Comentario/");
+      const { data } = await axios.get("api/Comentario/");
       this.comentarios = data;
     },
     async comentar() {
-      await axios.post("Comentario/", this.comentario);
+      this.comentario.criado_por = this.user.pk
+      await axios.post("api/Comentario/", this.comentario);
       this.listarComentarios();
     },
     async deletarComentario(id) {
-      await axios.delete(`Comentario/${id}/`);
+      await axios.delete(`api/Comentario/${id}/`);
       this.listarComentarios();
     },
     async editarComentario(id) {
       try {
-        await axios.put(`Comentario/${id}/`, this.comentario);
+        await axios.put(`api/Comentario/${id}/`, this.comentario);
         this.listarComentarios();
       } catch (e) {
         console.log(e);

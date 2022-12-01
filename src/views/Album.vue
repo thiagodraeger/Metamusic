@@ -19,7 +19,7 @@
                 class="ma-10"
                 size="250"
                 tile
-              >
+                >
                 <v-img :src="item.src"></v-img>
               </v-avatar>
             </div>
@@ -27,17 +27,23 @@
         </v-col>
       </v-row>
     </v-container>
-
+    
     <!-- TESTE -->
     
-    </v-card>
-  </template>
-  
-  <script>
+  </v-card>
+</template>
+
+<script>
   import AlbumService from "@/api/album";
   const albumService = new AlbumService();
   
   export default {
+    async created() {
+      this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
+    },
+    async mounted() {
+      await this.buscarInfoBanda();
+    },
     data: () => ({
       show: false,
       loading: false,
@@ -56,12 +62,6 @@
       async buscarInfoAlbum() {
         this.album = await AlbumService.buscarAlbumPorId(this.$route.params.id);
       },
-    },
-    async mounted() {
-      await this.buscarInfoBanda();
-    },
-    async created() {
-      this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
     },
   };
   </script>
