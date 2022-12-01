@@ -4,6 +4,7 @@
       <v-list dense color="#0a0a0a">
         <v-list-item-title align="center">
           <h3>MetaMusic</h3>
+          <h5>{{user.username}}</h5>
         </v-list-item-title>
       </v-list>
       <v-list>
@@ -32,7 +33,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data() {
@@ -41,9 +42,14 @@ export default {
       items: [
         { title: "Home", icon: "mdi-home", to: "/home" },
         { title: "Bandas", icon: "mdi-account-group", to: "/bandas" },
-        { title: "Perfil", icon: "mdi-account-box", to: "/perfil" },
+        { title: "Artistas", icon: "mdi-account-star", to: "/artistas" },
+        { title: "Perfil", icon: "mdi-cog", to: "/perfil" },
       ],
     };
+  },
+
+  computed: {
+    ...mapState("auth", ["user"]),
   },
   methods: {
     ...mapActions("auth", ["logout"]),
@@ -57,6 +63,8 @@ export default {
   }
 };
 </script>
+
+
 
 <style scoped>
 main {
