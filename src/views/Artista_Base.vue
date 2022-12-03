@@ -6,7 +6,7 @@
           <v-img
             max-height="150"
             max-width="150"
-            src="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483097.jpg"
+            :src="artista.foto_artista ? artista.foto_artista.url : null"
           >
           </v-img>
           <v-col>
@@ -30,28 +30,6 @@
         </v-row>
       </v-col>
     </v-container>
-
-    <!-- <v-img
-      :src="artista.foto_artista ? artista.foto_artista.url : null"
-      height="250px"
-    >
-      <v-card-title
-        >{{ artista.nome_artista }}
-        <v-btn
-          @click="deletarArtista(artista.id)"
-          color="secondary"
-          fab
-          x-small
-          dark
-          class="ma-2"
-        >
-          <v-icon>mdi-delete</v-icon></v-btn
-        >
-      </v-card-title>
-      <v-card-subtitle>
-        {{ artista.dt_nasc.split("-").reverse().join("/") }}
-      </v-card-subtitle>
-    </v-img> -->
   </v-card>
 </template>
 

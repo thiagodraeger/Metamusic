@@ -72,7 +72,7 @@
               :src="artista.foto_artista ? artista.foto_artista.url : null"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.5)"
-              height="150px"
+              height="175px"
             >
               <v-card-title v-text="artista.nome_artista"></v-card-title>
               <v-card-subtitle v-text="artista.ano_criacao"></v-card-subtitle>
