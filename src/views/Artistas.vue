@@ -57,7 +57,6 @@
             <v-btn color="green darken-1" text @click="CriarArtista">
               Adicionar
             </v-btn>
-            <!-- @click="dialog = false" -->
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -110,10 +109,6 @@ export default {
     },
     async CriarArtista() {
       await axios.post("api/Artista/", this.artista);
-      this.buscarArtistas();
-    },
-    async deletarArtista(id) {
-      await axios.delete(`api/Artista/${id}/`);
       this.buscarArtistas();
     },
   },

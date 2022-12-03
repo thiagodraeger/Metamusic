@@ -1,121 +1,93 @@
 <template>
-  <v-card :loading="loading" class="mx-auto" color="#121212">
-    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.url : null">
-      <v-row>
-        <v-card-title class="nomebanda">
-          {{ banda.nome_banda }}
-          <a target="_blank" :href="banda.link_spotify">
-            <v-icon
-              display="flex"
-              color="#1DB954"
-              type="submit"
-              class="spotify pa-2"
-              size="38px"
-              >{{ "mdi-spotify" }}
-            </v-icon>
-          </a>
-        </v-card-title>
-      </v-row>
-    </v-img>
-
-    <v-card-title class="white--text titulo"> Sobre a banda</v-card-title>
-    <v-card-text class="white--text">
-      <v-row align="center" class="mx-0 text-subtitle-1 ano">
-        Criada em {{ banda.ano_criacao }}</v-row
-      >
-
-      <div class="my-4 texto">{{ banda.desc_banda }}</div>
-    </v-card-text>
-
-    <v-card-title class="white--text titulo">Discografia</v-card-title>
+  <v-card class="mx-auto" color="#121212" dark>
     <v-container>
-      <v-row dense>
-        <v-col v-for="album in albums" :key="album.id" cols="2">
-          <v-card link :to="`/albums/${album.id}`" class="card">
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <v-img
-                :src="album.capa_album ? album.capa_album.url : null"
-              ></v-img>
-            </div>
-            <div class="Album">
-              <v-card-title v-text="album.nome_album"></v-card-title>
-              <v-card-subtitle v-text="album.ano_lancamento"></v-card-subtitle>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
+      <v-col>
+        <v-row>
+          <v-img
+            max-height="150"
+            max-width="150"
+            src="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483097.jpg"
+          >
+          </v-img>
+          <v-col>
+            <v-card-title
+              >{{ artista.nome_artista }}
+              <v-btn
+                @click="deletarArtista(artista.id)"
+                color="secondary"
+                fab
+                x-small
+                dark
+                class="ma-2"
+              >
+                <v-icon>mdi-delete</v-icon></v-btn
+              >
+            </v-card-title>
+            <v-card-subtitle>
+              {{ artista.dt_nasc.split("-").reverse().join("/") }}
+            </v-card-subtitle>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-container>
+
+    <!-- <v-img
+      :src="artista.foto_artista ? artista.foto_artista.url : null"
+      height="250px"
+    >
+      <v-card-title
+        >{{ artista.nome_artista }}
+        <v-btn
+          @click="deletarArtista(artista.id)"
+          color="secondary"
+          fab
+          x-small
+          dark
+          class="ma-2"
+        >
+          <v-icon>mdi-delete</v-icon></v-btn
+        >
+      </v-card-title>
+      <v-card-subtitle>
+        {{ artista.dt_nasc.split("-").reverse().join("/") }}
+      </v-card-subtitle>
+    </v-img> -->
   </v-card>
 </template>
 
 <script>
-import BandaService from "@/api/banda";
-const bandaService = new BandaService();
-import AlbumService from "@/api/album";
-const albumService = new AlbumService();
+import ArtistaService from "@/api/artista";
+const artistaService = new ArtistaService();
+import axios from "axios";
 
 export default {
-  data: () => ({
-    show: false,
-    loading: false,
-    banda: {},
-    albums: [],
-    items: [
-      {
-        color: "#9e9e9e",
-        src: "https://www.pindula.co.zw/images/a/a7/No_Image.jpg",
-        title: "Exemplo",
-        dt: "0000",
-      },
-    ],
-  }),
+  async created() {
+    this.artistas = await artistaService.buscarArtistas();
+  },
+
+  data() {
+    return {
+      artistas: [],
+      artista: {},
+      dialog: false,
+    };
+  },
+
   methods: {
-    async buscarInfoBanda() {
-      this.banda = await bandaService.buscarBandaPorId(this.$route.params.id);
+    async buscarInfoArtista() {
+      this.artista = await artistaService.buscarArtistaPorId(
+        this.$route.params.id
+      );
+    },
+    async deletarArtista(id) {
+      await axios.delete(`api/Artista/${id}/`);
+      this.buscarArtistas();
     },
   },
   async mounted() {
-    await this.buscarInfoBanda();
-  },
-  async created() {
-    this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
+    await this.buscarInfoArtista();
   },
 };
 </script>
-<style scoped>
-a:link {
-  text-decoration: none;
-}
 
-a:visited {
-  text-decoration: none;
-}
-.Album {
-  background-color: #171717;
-  color: white;
-}
-.card {
-  border-radius: 15px;
-}
-.nomebanda {
-  color: white;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  font-size: 80px;
-  padding: 25px;
-  backdrop-filter: blur(1px);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-.texto {
-  font-size: 17px;
-}
-
-.ano {
-  font-weight: bold;
-}
-
-.titulo {
-  text-decoration: underline;
-}
-</style>
+<style scoped></style>
