@@ -77,7 +77,7 @@
       <v-container fluid>
         <v-row dense>
           <v-col v-for="artista in artistas" :key="artista.id" cols="2">
-            <v-card link :to="`/artistas/${artista.id}`">
+            <v-card link :to="`/artista/${artista.id}`">
               <v-img
                 :src="artista.foto_artista ? artista.foto_artista.url : null"
                 class="white--text align-end"

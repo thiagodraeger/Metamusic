@@ -45,14 +45,19 @@ const routes = [
         component: () => import("@/views/Bandas.vue"),
       },
       {
-        path: "/bandas/:id",
+        path: "/banda/:id",
         name: "BandaDetail",
-        component: () => import("@/views/Base.vue"),
+        component: () => import("@/views/Banda_Base.vue"),
       },
       {
         path: "/artistas",
         name: "Artistas",
         component: () => import("@/views/Artistas.vue"),
+      },
+      {
+        path: "/artista/:id",
+        name: "ArtistaDetail",
+        component: () => import("@/views/Artista_Base.vue"),
       },
       {
         path: "/home",

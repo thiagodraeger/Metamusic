@@ -83,7 +83,7 @@ export default {
     async submitLogin() {
       try {
         await this.login(this.user);
-        this.$router.push({ path: "/perfil" });
+        this.$router.push({ path: "/home" });
       } catch (e) {
         console.log(e);
       }
