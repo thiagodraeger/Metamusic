@@ -77,17 +77,6 @@
             >
               <v-card-title v-text="artista.nome_artista"></v-card-title>
               <v-card-subtitle v-text="artista.ano_criacao"></v-card-subtitle>
-              <!-- DELETAR -->
-              <!-- <v-btn
-            @click="deletarArtista(artista.id)"
-            color="secondary"
-            fab
-            x-small
-            dark
-            class="ma-2"
-          >
-            <v-icon>mdi-delete</v-icon></v-btn> -->
-              <!-- DELETAR -->
             </v-img>
           </v-card>
         </v-col>
