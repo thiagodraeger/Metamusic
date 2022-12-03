@@ -13,7 +13,7 @@
 
         <v-card>
           <v-card-title class="text-h5 lighten-2">
-            Adicione uma Banda
+            Adicione um Artista
             <v-btn fab x-small @click="dialog = false" right absolute depressed>
               <v-icon color="red">mdi-close</v-icon>
             </v-btn>
@@ -31,6 +31,7 @@
                 prepend-icon="mdi-upload"
                 label="Foto"
                 v-model="artista.foto_artista"
+                @keyup.enter="CriarArtista"
               >
               </v-file-input>
               <v-text-field
@@ -40,6 +41,7 @@
                 outlined
                 dense
                 v-model="artista.nome_artista"
+                @keyup.enter="CriarArtista"
               ></v-text-field>
               <v-text-field
                 hide-details
@@ -49,12 +51,13 @@
                 dense
                 type="date"
                 v-model="artista.dt_nasc"
+                @keyup.enter="CriarArtista"
               ></v-text-field>
             </v-form>
           </v-col>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="CriarArtista">
+            <v-btn href="/Artistas" color="green darken-1" text @click="CriarArtista">
               Adicionar
             </v-btn>
           </v-card-actions>

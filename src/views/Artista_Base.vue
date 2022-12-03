@@ -10,22 +10,88 @@
           >
           </v-img>
           <v-col>
-            <v-card-title
-              >{{ artista.nome_artista }}
-              <v-btn
-                @click="deletarArtista(artista.id)"
-                color="secondary"
-                fab
-                x-small
-                dark
-                class="ma-2"
-              >
-                <v-icon>mdi-delete</v-icon></v-btn
-              >
-            </v-card-title>
+            <v-card-title>{{ artista.nome_artista }} </v-card-title>
             <v-card-subtitle>
               {{ artista.dt_nasc.split("-").reverse().join("/") }}
             </v-card-subtitle>
+          </v-col>
+          <v-col align-self="center">
+            <v-row justify="end">
+              <v-btn
+                href="/Artistas"
+                fab
+                x-small
+                dark
+                class="ma-1"
+                @click="deletarArtista(artista.id)"
+              >
+                <v-icon>mdi-delete</v-icon></v-btn
+              >
+            </v-row>
+            <v-row justify="end">
+              <v-dialog v-model="dialog" width="500" dark overlay-color="black">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn v-bind="attrs" v-on="on" fab x-small dark class="ma-1">
+                    <v-icon>mdi-pencil</v-icon></v-btn
+                  >
+                </template>
+                <v-card>
+                  <v-card-title class="text-h5 lighten-2">
+                    Edite o Artista
+                    <v-btn
+                      fab
+                      x-small
+                      @click="dialog = false"
+                      right
+                      absolute
+                      depressed
+                    >
+                      <v-icon color="red">mdi-close</v-icon>
+                    </v-btn>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+                  <v-col>
+                    <v-form>
+                      <v-file-input
+                        hide-details
+                        class="mb-3"
+                        dense
+                        outlined
+                        accept="image/png, image/jpeg, image/bmp"
+                        prepend-icon="mdi-upload"
+                        label="Foto"
+                        v-model="artista.foto_artista"
+                      >
+                      </v-file-input>
+                      <v-text-field
+                        hide-details
+                        class="mb-3"
+                        label="Nome"
+                        outlined
+                        dense
+                        v-model="artista.nome_artista"
+                      ></v-text-field>
+                      <v-text-field
+                        hide-details
+                        class="mb-3"
+                        label="Data de Nascimento"
+                        outlined
+                        dense
+                        type="date"
+                        v-model="artista.dt_nasc"
+                      ></v-text-field>
+                    </v-form>
+                  </v-col>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" text @click="dialog = false">
+                      Salvar
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-row>
           </v-col>
         </v-row>
       </v-col>
@@ -39,7 +105,7 @@ const artistaService = new ArtistaService();
 import axios from "axios";
 
 export default {
-  async created() {
+  async listarArtistas() {
     this.artistas = await artistaService.buscarArtistas();
   },
 
@@ -60,6 +126,14 @@ export default {
     async deletarArtista(id) {
       await axios.delete(`api/Artista/${id}/`);
       this.buscarArtistas();
+    },
+    async editarArtista(id) {
+      try {
+        await axios.put(`api/Artista/${id}/`, this.artista);
+        this.listarArtistas();
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
   async mounted() {
