@@ -50,7 +50,6 @@
         <v-text-field
           auto-grow
           v-model="comentario.comentario"
-          @keydow.enter="comentar"
           label="Adicione um comentário..."
           rows="1"
           row-height="2"
@@ -76,7 +75,6 @@
           </v-list-item-content>
           <v-btn
             @click="deletarComentario(comentario.id)"
-            color="secondary"
             fab
             x-small
             dark
@@ -86,7 +84,6 @@
           </v-btn>
           <v-btn
             @click="editarComentario(comentario.id)"
-            color="secondary"
             fab
             x-small
             dark

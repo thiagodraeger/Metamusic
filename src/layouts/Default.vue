@@ -78,7 +78,7 @@ main {
 	padding:0;
 	font-family:"arial",heletica,sans-serif;
 	font-size:12px;
-    background: #2f3336 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+    background: #2f3336 url('https://i.pinimg.com/736x/d9/87/0d/d9870ddb4ed7fb7d9f3156c8eb0fcea4.jpg') repeat 0 0;
 	-webkit-animation: 15s linear 0s normal none infinite animate;
 	-moz-animation: 15s linear 0s normal none infinite animate;
 	-ms-animation: 15s linear 0s normal none infinite animate;

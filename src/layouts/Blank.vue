@@ -1,7 +1,9 @@
 <template>
   <v-app>
       <v-main>
-          <router-view></router-view>
+          <router-view>
+            
+          </router-view>
       </v-main>
   </v-app>
 </template>
@@ -13,7 +15,6 @@ export default {
 
 <style scoped>
 main {
-  /* background-image: url('https://wallpaperaccess.com/full/1162700.jpg'); */
   background-image: url("../assets/images/wallpaper_login.jpg");
   background-size: cover;
   background-attachment: fixed;
