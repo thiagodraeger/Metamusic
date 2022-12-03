@@ -24,7 +24,8 @@
 
         <v-divider></v-divider>
         <v-col>
-        <v-file-input
+          <v-form>
+            <v-file-input
           hide-details
           class="mb-3"
           dense
@@ -64,6 +65,8 @@
           v-model="banda.desc_banda"
           @keydown.enter="CriarBanda"
         ></v-textarea>
+          </v-form>
+        
         </v-col>
         <v-card-actions>
           <v-spacer></v-spacer>
