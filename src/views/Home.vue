@@ -4,7 +4,7 @@
     <v-divider color="white"></v-divider>
     <v-container class="lojas mt-4">
       <!-- teste-slide -->
-      <v-slide-group v-model="model" class="lojas" show-arrows >
+      <v-slide-group v-model="model" class="lojas" show-arrows>
         <v-slide-item v-for="loja in lojas" :key="loja.id">
           <v-card
             link
@@ -12,11 +12,7 @@
             color="#131313"
             class="ma-4 d-flex align-center"
           >
-            <v-img :src="loja.src" 
-            height="90"
-            width="290"
-            > 
-            </v-img>
+            <v-img :src="loja.src" height="90" width="290"> </v-img>
           </v-card>
         </v-slide-item>
       </v-slide-group>

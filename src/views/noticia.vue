@@ -101,7 +101,7 @@
 
 <script>
 import axios from "axios";
-import { mapState } from "vuex"
+import { mapState } from "vuex";
 
 export default {
   async created() {
@@ -121,7 +121,7 @@ export default {
     ],
   }),
   computed: {
-    ...mapState("auth", ["user"])
+    ...mapState("auth", ["user"]),
   },
   methods: {
     async listarComentarios() {
@@ -129,7 +129,7 @@ export default {
       this.comentarios = data;
     },
     async comentar() {
-      this.comentario.criado_por = this.user.pk
+      this.comentario.criado_por = this.user.pk;
       await axios.post("api/Comentario/", this.comentario);
       this.listarComentarios();
     },
