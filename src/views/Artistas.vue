@@ -118,32 +118,5 @@ export default {
 };
 </script>
 
-<!-- <script>
-// import ArtistaService from "@/api/artista";
-// import axios from "axios";
-
-// const artistaService = new ArtistaService();
-// export default {
-//   async created() {
-//     this.artistas = await artistaService.buscarArtistas();
-//     console.log(this.artistas)
-//   },
-      
-//   data() {
-//     return {
-//       artistas: [],
-//       artista: {},
-//       dialog: false,
-//       };
-//     },
-
-//   methods: {
-//     async buscarArtistas() {
-//     const { data } = await axios.get("api/Artista/");
-//     this.bandas = data;
-//   },
-// }
-// };
-// </script> -->
 
 <style></style>
