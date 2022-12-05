@@ -34,6 +34,7 @@
                 @keyup.enter="CriarArtista"
               >
               </v-file-input>
+              <!-- <button>UPAR </button> -->
               <v-text-field
                 hide-details
                 class="mb-3"
@@ -57,7 +58,12 @@
           </v-col>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn href="/Artistas" color="green darken-1" text @click="CriarArtista">
+            <v-btn
+              href="/Artistas"
+              color="green darken-1"
+              text
+              @click="CriarArtista"
+            >
               Adicionar
             </v-btn>
           </v-card-actions>
