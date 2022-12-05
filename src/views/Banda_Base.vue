@@ -14,6 +14,24 @@
               >{{ "mdi-spotify" }}
             </v-icon>
           </a>
+          <v-col>
+            <v-row>
+              <v-btn
+                href="/Bandas"
+                x-small
+                light
+                class="ma-1"
+                @click="deletarBanda(banda.id)"
+              >
+                <v-icon>mdi-delete</v-icon></v-btn
+              >
+            </v-row>
+            <v-row>
+              <v-btn v-bind="attrs" v-on="on" x-small light class="ma-1">
+                <v-icon>mdi-pencil</v-icon></v-btn
+              >
+            </v-row>
+          </v-col>
         </v-card-title>
       </v-row>
     </v-img>
@@ -53,6 +71,7 @@ import BandaService from "@/api/banda";
 const bandaService = new BandaService();
 import AlbumService from "@/api/album";
 const albumService = new AlbumService();
+import axios from "axios";
 
 export default {
   data: () => ({
@@ -72,6 +91,10 @@ export default {
   methods: {
     async buscarInfoBanda() {
       this.banda = await bandaService.buscarBandaPorId(this.$route.params.id);
+    },
+    async deletarBanda(id) {
+      await axios.delete(`api/Banda/${id}/`);
+      this.buscarBanda();
     },
   },
   async mounted() {
