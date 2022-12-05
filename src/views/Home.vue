@@ -34,7 +34,7 @@
             <v-container fluid>
               <v-img
                 height="250"
-                :src="noticia.foto ? noticia.foto.url : null"
+                :src="teste.src"
               ></v-img>
               <v-card-title v-text="noticia.titulo_noticia"></v-card-title>
               <v-card-text>
@@ -57,6 +57,7 @@ export default {
   data() {
     return {
       noticias: [],
+      teste: {src: require("@/assets/images/no_image_available.jpeg")},
       lojas: [
         {
           id: 1,
