@@ -1,54 +1,97 @@
 <template>
-  <v-card :loading="loading" class="mx-auto" color="#121212">
+  <v-card :loading="loading" class="mx-auto" color="#121212" dark>
     <!-- TESTE -->
     <v-container>
-      <v-row dense>
-        <v-col v-for="(item, i) in items" :key="i" cols="12">
-          <v-card :color="item.color" dark>
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <v-avatar class="ma-10" size="250" tile>
-                <v-img :src="item.src"></v-img>
-              </v-avatar>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
+      <v-card>
+        <v-row>
+          <v-col sm="2" cols="12">
+            <v-avatar class="ml-3" size="250" tile>
+              <v-img
+                :src="album.capa_album ? album.capa_album.url : null"
+              ></v-img>
+            </v-avatar>
+          </v-col>
+          <v-col sm="6" cols="12">
+            <v-text-field class="titulo_album" v-model="album.nome_album">
+            </v-text-field>
+          </v-col>
+          
+        </v-row>
+      </v-card>
     </v-container>
 
     <!-- TESTE -->
+
+    <v-col>
+      <v-list>
+        <v-list-item-group>
+        <v-list-item v-for="musica in musicas" :key="musica.id">
+          <v-list-item-content>
+            <v-list-item-title v-text="musica.id"></v-list-item-title>
+            <v-divider></v-divider>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title v-text="musica.titulo_musica"></v-list-item-title>
+            <v-divider></v-divider>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title v-text="musica.tempo_musica"></v-list-item-title>
+            <v-divider></v-divider>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+      </v-list>
+
+      <!-- <v-list>
+        <v-list-item v-for="musica in musicas" :key="musica.id">
+          <v-list-item-content>
+            {{ musica.id }} - {{ musica.titulo_musica }}
+            {{ musica.tempo_musica }}
+            <v-divider></v-divider>
+          </v-list-item-content>
+          <v-list-item-content>
+            {{ musica.tempo_musica }}
+            <v-divider></v-divider>
+          </v-list-item-content>  
+        </v-list-item>
+      </v-list> -->
+
+    </v-col>
   </v-card>
 </template>
+
 
 <script>
 import AlbumService from "@/api/album";
 const albumService = new AlbumService();
+import MusicaService from "@/api/musica";
+const musicaService = new MusicaService();
 
 export default {
-  async created() {
-    this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
-  },
-  async mounted() {
-    await this.buscarInfoBanda();
-  },
   data: () => ({
-    show: false,
     loading: false,
-    banda: {},
-    albums: [],
-    items: [
-      {
-        color: "#FFFFFF",
-        src: "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
-        title: "Halcyon Days",
-        artist: "Ellie Goulding",
-      },
-    ],
+    album: {},
+    musicas: [],
   }),
   methods: {
     async buscarInfoAlbum() {
-      this.album = await AlbumService.buscarAlbumPorId(this.$route.params.id);
+      this.album = await albumService.buscarAlbumPorId(this.$route.params.id);
     },
+  },
+  async mounted() {
+    await this.buscarInfoAlbum();
+  },
+  async created() {
+    this.musicas = await musicaService.buscarMusica(
+      Number(this.$route.params.id)
+    );
   },
 };
 </script>
-<style scoped></style>
+
+
+<style>
+.titulo_album{
+  font-size: xx-large;
+}
+</style>
