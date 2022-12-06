@@ -25,9 +25,9 @@
     <v-col>
       <v-list>
         <v-list-item-group>
-        <v-list-item v-for="musica in musicas" :key="musica.id">
+        <v-list-item v-for="(musica, i) in musicas" :key="musica.id">
           <v-list-item-content>
-            <v-list-item-title v-text="musica.id"></v-list-item-title>
+            <v-list-item-title>{{(i + 1)}}</v-list-item-title>
             <v-divider></v-divider>
           </v-list-item-content>
           <v-list-item-content>
@@ -35,7 +35,7 @@
             <v-divider></v-divider>
           </v-list-item-content>
           <v-list-item-content>
-            <v-list-item-title v-text="musica.tempo_musica"></v-list-item-title>
+            <v-list-item-title v-text="musica.tempo_musica" class="tempo" ></v-list-item-title>
             <v-divider></v-divider>
           </v-list-item-content>
         </v-list-item>
