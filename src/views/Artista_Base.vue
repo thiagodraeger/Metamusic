@@ -85,7 +85,7 @@
                   </v-col>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="dialog = false">
+                    <v-btn color="green darken-1" text @click="editarArtista, dialog = false">
                       Salvar
                     </v-btn>
                   </v-card-actions>
@@ -130,7 +130,7 @@ export default {
     async editarArtista(id) {
       try {
         await axios.put(`api/Artista/${id}/`, this.artista);
-        this.listarArtistas();
+        this.buscarArtistas();
       } catch (e) {
         console.log(e);
       }

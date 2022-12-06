@@ -15,7 +15,6 @@
             <v-text-field class="titulo_album" v-model="album.nome_album">
             </v-text-field>
           </v-col>
-          
         </v-row>
       </v-card>
     </v-container>
@@ -25,21 +24,26 @@
     <v-col>
       <v-list>
         <v-list-item-group>
-        <v-list-item v-for="(musica, i) in musicas" :key="musica.id">
-          <v-list-item-content>
-            <v-list-item-title>{{(i + 1)}}</v-list-item-title>
-            <v-divider></v-divider>
-          </v-list-item-content>
-          <v-list-item-content>
-            <v-list-item-title v-text="musica.titulo_musica"></v-list-item-title>
-            <v-divider></v-divider>
-          </v-list-item-content>
-          <v-list-item-content>
-            <v-list-item-title v-text="musica.tempo_musica" class="tempo" ></v-list-item-title>
-            <v-divider></v-divider>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
+          <v-list-item v-for="(musica, i) in musicas" :key="musica.id">
+            <v-list-item-content>
+              <v-list-item-title>{{ i + 1 }}</v-list-item-title>
+              <v-divider></v-divider>
+            </v-list-item-content>
+            <v-list-item-content>
+              <v-list-item-title
+                v-text="musica.titulo_musica"
+              ></v-list-item-title>
+              <v-divider></v-divider>
+            </v-list-item-content>
+            <v-list-item-content id="pepino">
+              <v-list-item-title
+                v-text="musica.tempo_musica"
+                class="tempo"
+              ></v-list-item-title>
+              <v-divider></v-divider>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
 
       <!-- <v-list>
@@ -55,11 +59,9 @@
           </v-list-item-content>  
         </v-list-item>
       </v-list> -->
-
     </v-col>
   </v-card>
 </template>
-
 
 <script>
 import AlbumService from "@/api/album";
@@ -89,9 +91,12 @@ export default {
 };
 </script>
 
-
 <style>
-.titulo_album{
+.titulo_album {
   font-size: xx-large;
+}
+#pepino {
+  display: flex;
+  justify-content: end;
 }
 </style>
