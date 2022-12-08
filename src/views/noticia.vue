@@ -145,7 +145,7 @@ export default {
 
 <style>
 .titulo {
-  font-size: 50px;
+  font-size: 45px;
 }
 
 .letra {
