@@ -182,18 +182,14 @@ export default {
     banda: {},
     albums: [],
     artistas: [],
-    items: [
-      {
-        color: "#9e9e9e",
-        src: "https://www.pindula.co.zw/images/a/a7/No_Image.jpg",
-        title: "Exemplo",
-        dt: "0000",
-      },
-    ],
   }),
   methods: {
     async buscarInfoBanda() {
       this.banda = await bandaService.buscarBandaPorId(this.$route.params.id);
+    },
+    async buscarArtistas() {
+      const { data } = await axios.get("api/Artista/");
+      this.artistas = data;
     },
     async deletarBanda(id) {
       await axios.delete(`api/Banda/${id}/`);
