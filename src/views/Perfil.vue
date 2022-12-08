@@ -6,14 +6,14 @@
       <v-container class="mt-4">
         <v-col>
           <v-row>
-            <v-img
+            <!-- <v-img
               max-height="180"
               max-width="180"
               src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
               class="p-5"
               style="border-radius: 1000px"
             >
-            </v-img>
+            </v-img> -->
             <v-col style="padding-left: 50px">
               <v-text-field
                 label="Apelido"
