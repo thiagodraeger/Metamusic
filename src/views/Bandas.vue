@@ -141,7 +141,6 @@ export default {
       artistas: [],
       artista: {},
       dialog: false,
-      items: ["foo", "bar", "fizz", "buzz"],
     };
   },
 
