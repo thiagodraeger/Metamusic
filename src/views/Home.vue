@@ -34,7 +34,7 @@
             <v-container fluid>
               <v-img
                 height="250"
-                :src="teste.src"
+                :src="noticia.foto_noticia ? noticia.foto_noticia.url : null"
               ></v-img>
               <v-card-title v-text="noticia.titulo_noticia"></v-card-title>
               <v-card-text>

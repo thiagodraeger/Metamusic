@@ -98,11 +98,17 @@
 
 <script>
 import axios from "axios";
+import NoticiaService from "@/api/noticia";
+const noticiaService = new NoticiaService();
 import { mapState } from "vuex";
 
 export default {
   async created() {
     await this.listarComentarios();
+    this.noticia = await noticiaService.buscarNoticia();
+  },
+  async mounted() {
+    await this.buscarInfoNoticia();
   },
   data: () => ({
     comentarios: [],
@@ -116,11 +122,19 @@ export default {
         to: "/noticias/n1",
       },
     ],
+    noticia: {}
   }),
   computed: {
     ...mapState("auth", ["user"]),
   },
   methods: {
+    async buscarInfoNoticia() {
+      this.noticia = await noticiaService.buscarNoticiaPorId(this.$route.params.id);
+    },
+    async buscarNoticias() {
+      const { data } = await axios.get("api/Noticia/");
+      this.noticias = data;
+    },
     async listarComentarios() {
       const { data } = await axios.get("api/Comentario/");
       this.comentarios = data;
