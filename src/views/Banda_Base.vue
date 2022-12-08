@@ -265,5 +265,6 @@ a:visited {
 
 .titulo {
   text-decoration: underline;
+  font-size: 20px;
 }
 </style>
