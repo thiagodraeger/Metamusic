@@ -97,9 +97,9 @@ export default {
     async submitRegister() {
       try {
         await this.register(this.user);
-        this.$router.push({ path: "/perfil" });
       } catch (e) {
         console.log(e);
+        this.$router.push({ path: "/perfil" });
       }
     },
   },
