@@ -27,7 +27,7 @@
           <!-- cols="12"-->
           <v-card
             link
-            :to="`/noticias/${noticias.id}`"
+            :to="`/noticias/${noticia.id}`"
             color="#171717"
             outlined
           >
@@ -53,10 +53,12 @@
 <script>
 import NoticiaService from "@/api/noticia";
 const noticiaService = new NoticiaService();
+
 export default {
   data() {
     return {
       noticias: [],
+      noticia: {},
       teste: {src: require("@/assets/images/no_image_available.jpeg")},
       lojas: [
         {

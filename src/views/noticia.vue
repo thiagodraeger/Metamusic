@@ -8,41 +8,28 @@
       ></v-progress-linear>
     </template>
 
-    <v-card-title
-      v-for="noticia in noticias"
-      :key="noticia.title"
-      v-text="noticia.title"
-      class="titulo"
-    ></v-card-title>
+    <v-card-title v-text="noticia.titulo_noticia" class="titulo"></v-card-title>
 
     <v-card-text>
       <div class="cor my-4 text-subtitle-1">August 26, 2022 |</div>
 
-      <div class="letra">
-        On March 13th 2007, American gothic metal band TYPE O NEGATIVE released
-        their seventh and final studio album, Dead Again. This year marks the
-        15th anniversary of the band's final record before the passing of
-        bassist/vocalist Peter Steele.
-        <p></p>
-
-        Today, the band announces that they are offering a limited edition
-        re-issue of Dead Again.
-        <p></p>
-
-        TYPE O NEGATIVE's Kenny Hickey comments,
-        <p></p>
-
-        "The first casualty of this album was the record company - which
-        promptly went under after its release. Soon after, Peter passed, and
-        then even the rehearsal studio it was written and developed in was burnt
-        to the ground by Hurricane Sandy. As the black cloud continued its
-        relentless path over TYPE O, Dead Again appeared and disappeared from
-        the streaming platforms for years. Now that the storm has passed, we
-        have some slight hope of establishing a small illusion of permanence
-        with this final release of Dead Again. We are sorry for any
-        inconvenience we may have caused you."
-        <p></p>
-      </div>
+      <v-container class="letra">
+        <v-row>
+          {{ noticia.subtitulo }}
+        </v-row>
+        <br><br>
+        <v-row justify="center">
+          <v-img
+            class="d-flex"
+            max-width="500px"
+            :src="noticia.foto_noticia ? noticia.foto_noticia.url : null"
+          ></v-img>
+        </v-row>
+        <br><br>
+        <v-row>
+          {{ noticia.texto }}
+        </v-row>
+      </v-container>
     </v-card-text>
     <v-divider></v-divider>
     <v-container fluid>
@@ -65,7 +52,7 @@
           :key="index"
         >
           <v-list-item-content>
-            <v-list-item-title >
+            <v-list-item-title>
               <b>@{{ comentario.criado_por }}</b> -
               {{ comentario.data_comentario.split("-").reverse().join("/") }}
             </v-list-item-title>
@@ -82,12 +69,7 @@
           >
             <v-icon>mdi-delete</v-icon>
           </v-btn>
-          <v-btn
-            @click="editarComentario(comentario.id)"
-            fab
-            x-small
-            dark
-          >
+          <v-btn @click="editarComentario(comentario.id)" fab x-small dark>
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-list-item>
@@ -105,7 +87,6 @@ import { mapState } from "vuex";
 export default {
   async created() {
     await this.listarComentarios();
-    this.noticia = await noticiaService.buscarNoticia();
   },
   async mounted() {
     await this.buscarInfoNoticia();
@@ -122,14 +103,16 @@ export default {
         to: "/noticias/n1",
       },
     ],
-    noticia: {}
+    noticia: {},
   }),
   computed: {
     ...mapState("auth", ["user"]),
   },
   methods: {
     async buscarInfoNoticia() {
-      this.noticia = await noticiaService.buscarNoticiaPorId(this.$route.params.id);
+      this.noticia = await noticiaService.buscarNoticiaPorId(
+        this.$route.params.id
+      );
     },
     async buscarNoticias() {
       const { data } = await axios.get("api/Noticia/");
