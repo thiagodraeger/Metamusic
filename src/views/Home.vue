@@ -39,7 +39,7 @@
               <v-card-title v-text="noticia.titulo_noticia"></v-card-title>
               <v-card-text>
                 <v-row align="center" class="mx-0">
-                  <div v-text="noticia.conteudo_noticia"></div>
+                  <div v-text="noticia.subtitulo"></div>
                 </v-row>
               </v-card-text>
             </v-container>

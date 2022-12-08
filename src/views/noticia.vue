@@ -65,8 +65,8 @@
           :key="index"
         >
           <v-list-item-content>
-            <v-list-item-title>
-              <b>@{{ comentario.criado_por.username }}</b> -
+            <v-list-item-title >
+              <b>@{{ comentario.criado_por }}</b> -
               {{ comentario.data_comentario.split("-").reverse().join("/") }}
             </v-list-item-title>
             <v-list-item-subtitle>
