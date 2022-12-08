@@ -19,7 +19,7 @@
     </v-container>
 
     <!-- NEWS-->
-    <v-card-title class="pb-0">NEWS</v-card-title>
+    <v-card-title class="pb-0">NOTÍCIAS</v-card-title>
     <v-divider color="white"></v-divider>
     <v-container fluid>
       <v-row dense>
