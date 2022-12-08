@@ -45,7 +45,7 @@
 
                 <v-card>
                   <v-card-title class="text-h5 lighten-2">
-                    Adicione uma Banda
+                    Edite a Banda
                     <v-btn
                       fab
                       x-small
@@ -131,7 +131,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="green darken-1" text @click="editarBanda">
-                      Adicionar
+                      Salvar
                     </v-btn>
                     <!-- @click="dialog = false" -->
                   </v-card-actions>
