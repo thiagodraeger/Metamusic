@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" class="mx-auto" color="#121212">
+  <v-card class="mx-auto" color="#121212">
     <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.url : null">
       <v-row>
         <v-card-title class="nomebanda">
@@ -27,14 +27,115 @@
               >
             </v-row>
             <v-row>
-              <v-btn v-bind="attrs" v-on="on" x-small light class="ma-1">
-                <v-icon>mdi-pencil</v-icon></v-btn
+              <!-- POPUP -->
+      <v-dialog v-model="dialog" width="500" dark overlay-color="black">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn v-bind="attrs" v-on="on" x-small light class="ma-1">
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
+        </template>
+
+        <v-card>
+          <v-card-title class="text-h5 lighten-2">
+            Adicione uma Banda
+            <v-btn fab x-small @click="dialog = false" right absolute depressed>
+              <v-icon color="red">mdi-close</v-icon>
+            </v-btn>
+          </v-card-title>
+
+          <v-divider></v-divider>
+          <v-col>
+            <v-form>
+              <v-file-input
+                hide-details
+                class="mb-3"
+                dense
+                outlined
+                accept="image/png, image/jpeg, image/bmp"
+                prepend-icon="mdi-upload"
+                label="Foto da Banda"
+                v-model="banda.foto"
+                @keydown.enter="editarBanda"
               >
+              </v-file-input>
+              <v-file-input
+                hide-details
+                class="mb-3"
+                dense
+                outlined
+                accept="image/png, image/jpeg, image/bmp"
+                prepend-icon="mdi-upload"
+                label="Banner da Banda"
+                v-model="banda.capa_banda"
+                @keydown.enter="editarBanda"
+              >
+              </v-file-input>
+              <v-text-field
+                hide-details
+                class="mb-3"
+                label="Nome da Banda"
+                outlined
+                dense
+                v-model="banda.nome_banda"
+                @keydown.enter="editarBanda"
+              ></v-text-field>
+              <v-select
+                class="mb-3"
+                hide-details
+                dense
+                multiple
+                :items="artistas"
+                item-text="nome_artista"
+                item-value="id"
+                label="Artistas"
+                outlined
+                v-model="banda.integrantes"
+                @keydown.enter="editarBanda"
+              ></v-select>
+              <v-text-field
+                hide-details
+                class="mb-3"
+                label="Ano de Criação"
+                outlined
+                dense
+                type="number"
+                v-model="banda.ano_criacao"
+                @keydown.enter="editar"
+              ></v-text-field>
+              <v-textarea
+                hide-details
+                class="mb-3"
+                dense
+                outlined
+                label="Descrição da Banda"
+                v-model="banda.desc_banda"
+                @keydown.enter="editar"
+              ></v-textarea>
+            </v-form>
+          </v-col>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click="editarBanda">
+              Adicionar
+            </v-btn>
+            <!-- @click="dialog = false" -->
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <!-- FIM-POPUP -->
             </v-row>
           </v-col>
         </v-card-title>
       </v-row>
     </v-img>
+
+    <v-card-title class="white--text titulo"> Integrantes</v-card-title>
+    <v-card-text class="white--text">
+      <v-row align="center" class="mx-0 text-subtitle-1 ano">
+        {{ banda.integrantes }}</v-row
+      >
+    </v-card-text>
 
     <v-card-title class="white--text titulo"> Sobre a banda</v-card-title>
     <v-card-text class="white--text">
@@ -71,14 +172,16 @@ import BandaService from "@/api/banda";
 const bandaService = new BandaService();
 import AlbumService from "@/api/album";
 const albumService = new AlbumService();
+import ArtistaService from "@/api/artista";
+const artistaService = new ArtistaService();
 import axios from "axios";
 
 export default {
   data: () => ({
-    show: false,
-    loading: false,
+    dialog: false,
     banda: {},
     albums: [],
+    artistas: [],
     items: [
       {
         color: "#9e9e9e",
@@ -96,9 +199,19 @@ export default {
       await axios.delete(`api/Banda/${id}/`);
       this.buscarBanda();
     },
+    async editarBanda() {
+      try {
+        await axios.put(`api/Banda/${this.banda.id}/`, this.banda);
+        this.buscarBanda();
+      } catch (e) {
+        console.log(e);
+      }
+      this.dialog = false;
+    },
   },
   async mounted() {
     await this.buscarInfoBanda();
+    this.artistas = await artistaService.buscarArtistas();
   },
   async created() {
     this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));

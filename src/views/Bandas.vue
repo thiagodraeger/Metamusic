@@ -33,6 +33,18 @@
                 @keydown.enter="CriarBanda"
               >
               </v-file-input>
+              <v-file-input
+                hide-details
+                class="mb-3"
+                dense
+                outlined
+                accept="image/png, image/jpeg, image/bmp"
+                prepend-icon="mdi-upload"
+                label="Banner da Banda"
+                v-model="banda.capa_banda"
+                @keydown.enter="CriarBanda"
+              >
+              </v-file-input>
               <v-text-field
                 hide-details
                 class="mb-3"
@@ -61,7 +73,7 @@
                 label="Ano de Criação"
                 outlined
                 dense
-                type="year"
+                type="number"
                 v-model="banda.ano_criacao"
                 @keydown.enter="CriarBanda"
               ></v-text-field>
@@ -145,7 +157,9 @@ export default {
     async CriarBanda() {
       await axios.post("api/Banda/", this.banda);
       this.buscarBandas();
+      this.dialog = false;
     },
+    
   },
 };
 </script>
