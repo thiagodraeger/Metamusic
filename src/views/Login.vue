@@ -51,9 +51,9 @@
               <v-row class="font-italic pb-1" justify="center">
                 <a href="/cadastro">Ainda não tem uma conta? Registre-se</a>
               </v-row>
-              <v-row class="font-italic" justify="center">
+              <!-- <v-row class="font-italic" justify="center">
                 <a href="http://">Esqueceu a senha?</a>
-              </v-row>
+              </v-row> -->
             </v-card-text>
           </v-card>
         </v-col>
