@@ -218,7 +218,7 @@ export default {
     this.artistas = await artistaService.buscarArtistas();
   },
   async created() {
-    this.albums = await albumService.buscarAlbum();
+    this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
   },
 };
 </script>
