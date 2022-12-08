@@ -22,6 +22,7 @@
                 light
                 class="ma-1"
                 @click="deletarBanda(banda.id)"
+                dark
               >
                 <v-icon>mdi-delete</v-icon></v-btn
               >
@@ -30,7 +31,14 @@
               <!-- POPUP -->
               <v-dialog v-model="dialog" width="500" dark overlay-color="black">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn v-bind="attrs" v-on="on" x-small light class="ma-1">
+                  <v-btn
+                    v-bind="attrs"
+                    v-on="on"
+                    x-small
+                    light
+                    class="ma-1"
+                    dark
+                  >
                     <v-icon>mdi-pencil</v-icon>
                   </v-btn>
                 </template>
@@ -138,7 +146,7 @@
     </v-img>
 
     <v-card-title class="white--text titulo"> Integrantes</v-card-title>
-    
+
     <v-card-text class="white--text">
       <v-row align="center" class="mx-0 text-subtitle-1 ano"
         >{{ banda.integrantes }}
