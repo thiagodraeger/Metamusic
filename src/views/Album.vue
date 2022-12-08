@@ -4,7 +4,7 @@
     <v-container>
       <v-card>
         <v-row>
-          <v-col sm="2" cols="12">
+          <v-col sm="3" cols="12">
             <v-avatar class="ml-3" size="250" tile>
               <v-img
                 :src="album.capa_album ? album.capa_album.url : null"
