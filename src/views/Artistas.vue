@@ -59,7 +59,6 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-              href="/Artistas"
               color="green darken-1"
               text
               @click="CriarArtista"
@@ -119,6 +118,7 @@ export default {
     async CriarArtista() {
       await axios.post("api/Artista/", this.artista);
       this.buscarArtistas();
+      this.dialog = false;
     },
   },
 };

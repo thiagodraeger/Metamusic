@@ -12,7 +12,7 @@
           <v-col>
             <v-card-title>{{ artista.nome_artista }} </v-card-title>
             <v-card-subtitle>
-              {{ artista.dt_nasc.split("-").reverse().join("/") }}
+              {{ data_nascimento }}
             </v-card-subtitle>
           </v-col>
           <v-col align-self="center">
@@ -85,7 +85,7 @@
                   </v-col>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="editarArtista, dialog = false">
+                    <v-btn color="green darken-1" text @click="editarArtista">
                       Salvar
                     </v-btn>
                   </v-card-actions>
@@ -112,9 +112,16 @@ export default {
   data() {
     return {
       artistas: [],
-      artista: {},
+      artista: {
+        dt_nasc: "",
+      },
       dialog: false,
     };
+  },
+  computed: {
+    data_nascimento() {
+      return this.artista.dt_nasc.split("-").reverse().join("/");
+    },
   },
 
   methods: {
@@ -125,18 +132,19 @@ export default {
     },
     async deletarArtista(id) {
       await axios.delete(`api/Artista/${id}/`);
-      this.buscarArtistas();
+      this.buscarInfoArtista();
     },
-    async editarArtista(id) {
+    async editarArtista() {
       try {
-        await axios.put(`api/Artista/${id}/`, this.artista);
-        this.buscarArtistas();
+        await axios.put(`api/Artista/${this.artista.id}/`, this.artista);
+        this.buscarInfoArtista();
       } catch (e) {
         console.log(e);
       }
+      this.dialog = false;
     },
   },
-  async mounted() {
+  async created() {
     await this.buscarInfoArtista();
   },
 };
