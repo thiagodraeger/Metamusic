@@ -27,11 +27,12 @@
                 class="mb-3"
                 dense
                 outlined
+                type="file"
                 accept="image/png, image/jpeg, image/bmp"
                 prepend-icon="mdi-upload"
                 label="Foto"
                 v-model="artista.foto_artista"
-                @keyup.enter="CriarArtista"
+                @change="uploadFile"
               >
               </v-file-input>
               <!-- <button>UPAR </button> -->
@@ -58,11 +59,7 @@
           </v-col>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-              color="green darken-1"
-              text
-              @click="CriarArtista"
-            >
+            <v-btn color="green darken-1" text @click="CriarArtista">
               Adicionar
             </v-btn>
           </v-card-actions>
@@ -120,9 +117,25 @@ export default {
       this.buscarArtistas();
       this.dialog = false;
     },
+    uploadFile() {
+      this.Images = this.$refs.file.files[0];
+    },
+    async submitFile() {
+      const formData = new FormData();
+      formData.append("file", this.Images);
+      const headers = { "Content-Type": "multipart/form-data" };
+      const { data } = await axios.post(
+        "https://metamusic.pythonanywhere.com/images",
+        formData,
+        { headers }
+      );
+      this.artista.foto_artista_attachment_key = data.attachment_key;
+      await axios.post("https://metamusic.pythonanywhere.com/", this.artista);
+      this.$swal("Cachorro registrado com sucesso!"),
+        this.$router.push("/Artista");
+    },
   },
 };
 </script>
-
 
 <style></style>
