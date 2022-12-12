@@ -118,7 +118,7 @@
         <v-col v-for="banda in bandas" :key="banda.id" cols="3">
           <v-card link :to="`/banda/${banda.id}`">
             <v-img
-              :src="banda.foto ? banda.foto.url : null"
+              :src="banda.foto ? banda.foto.file : null"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.5)"
               height="250px"
@@ -134,16 +134,17 @@
 </template>
 
 <script>
-// import BandaService from "@/api/banda";
-// import ArtistaService from "@/api/artista";
+import BandaService from "@/api/banda";
+import ArtistaService from "@/api/artista";
 import axios from "axios";
 import { mapState } from "vuex";
 
-// const bandaService = new BandaService();
-// const artistaService = new ArtistaService();
+const bandaService = new BandaService();
+const artistaService = new ArtistaService();
 export default {
   async created() {
-    await this.buscarBandas();
+    this.bandas = await bandaService.buscarBandas();
+    this.artistas = await artistaService.buscarArtistas();
   },
 
   data() {
@@ -159,19 +160,13 @@ export default {
     ...mapState("auth", ["user"]),
   },
   methods: {
-    async buscarBandas() {
-      const { data } = await axios.get("api/Banda/");
-      this.bandas = data;
-      console.log(this.bandas);
-    },
-
     async CriarBanda() {
       this.banda.foto_attachment_key = await this.submitFile(this.foto_banda);
       this.banda.capa_banda_attachment_key = await this.submitFile(
         this.capa_banda
       );
       await axios.post("api/Banda/", this.banda);
-      this.buscarBandas();
+      this.bandas = await bandaService.buscarBandas();
       this.dialog = false;
     },
     uploadFile1() {

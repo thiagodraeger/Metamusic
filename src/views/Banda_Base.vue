@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" color="#121212">
-    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.url : null">
+    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.file : null">
       <v-row>
         <v-card-title class="nomebanda">
           {{ banda.nome_banda }}
@@ -68,6 +68,8 @@
                         class="mb-3"
                         dense
                         outlined
+                        ref="file1"
+                        @change="uploadFile1"
                         accept="image/png, image/jpeg, image/bmp"
                         prepend-icon="mdi-upload"
                         label="Foto da Banda"
@@ -80,6 +82,8 @@
                         class="mb-3"
                         dense
                         outlined
+                        ref="file2"
+                        @change="uploadFile2"
                         accept="image/png, image/jpeg, image/bmp"
                         prepend-icon="mdi-upload"
                         label="Banner da Banda"
@@ -194,6 +198,8 @@ import BandaService from "@/api/banda";
 const bandaService = new BandaService();
 import AlbumService from "@/api/album";
 const albumService = new AlbumService();
+import ArtistaService from "@/api/artista";
+const artistaService = new ArtistaService();
 
 import axios from "axios";
 import { mapState } from "vuex";
@@ -209,18 +215,52 @@ export default {
     ...mapState("auth", ["user"]),
   },
   methods: {
+    uploadFile1() {
+      this.foto_banda = this.$refs.file1["internalValue"];
+    },
+    uploadFile2() {
+      this.capa_banda = this.$refs.file2["internalValue"];
+    },
+    async submitFile(image) {
+      console.log(image);
+      const formData = new FormData();
+      formData.append("file", image);
+      const headers = { "Content-Type": "multipart/form-data" };
+      const { data } = await axios.post(
+        `${axios.defaults.baseURL}api/media/images/`,
+        formData,
+        { headers }
+      );
+      return data.attachment_key;
+    },
     async buscarInfoBanda() {
       this.banda = await bandaService.buscarBandaPorId(this.$route.params.id);
-      console.log(this.banda);
     },
     async deletarBanda(id) {
       await axios.delete(`api/Banda/${id}/`);
-      this.buscarBanda();
+      this.buscarInfoBanda();
     },
     async editarBanda() {
       try {
-        await axios.put(`api/Banda/${this.banda.id}/`, this.banda);
-        this.buscarBanda();
+        let integrantesID = [];
+        this.banda.integrantes.forEach((integrante) =>
+          integrantesID.push(integrante.id)
+        );
+        this.banda["integrantes"] = integrantesID;
+        if (this.foto_banda !== undefined) {
+          console.log(this.foto_banda);
+          this.banda.foto_attachment_key = await this.submitFile(
+            this.foto_banda
+          );
+        }
+        if (this.capa_banda !== undefined) {
+          console.log(this.capa_banda);
+          this.banda.capa_banda_attachment_key = await this.submitFile(
+            this.capa_banda
+          );
+        } 
+        await axios.patch(`api/Banda/${this.banda.id}/`, this.banda);
+        this.buscarInfoBanda();
       } catch (e) {
         console.log(e);
       }
@@ -232,6 +272,7 @@ export default {
   },
   async created() {
     this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
+    this.artistas = await artistaService.buscarArtistas();
   },
 };
 </script>
