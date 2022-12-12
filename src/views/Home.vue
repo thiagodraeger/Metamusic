@@ -4,7 +4,7 @@
     <v-divider color="white"></v-divider>
     <v-container class="lojas mt-4">
       <!-- teste-slide -->
-      <v-slide-group v-model="model" class="lojas" show-arrows>
+      <v-slide-group class="lojas" show-arrows>
         <v-slide-item v-for="loja in lojas" :key="loja.id">
           <v-card
             link
@@ -25,12 +25,7 @@
       <v-row dense>
         <v-col v-for="noticia in noticias" :key="noticia.id" cols="4">
           <!-- cols="12"-->
-          <v-card
-            link
-            :to="`/noticias/${noticia.id}`"
-            color="#171717"
-            outlined
-          >
+          <v-card link :to="`/noticias/${noticia.id}`" color="#171717" outlined>
             <v-container fluid>
               <v-img
                 height="250"
@@ -59,7 +54,7 @@ export default {
     return {
       noticias: [],
       noticia: {},
-      teste: {src: require("@/assets/images/no_image_available.jpeg")},
+      teste: { src: require("@/assets/images/no_image_available.jpeg") },
       lojas: [
         {
           id: 1,

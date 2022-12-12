@@ -3,7 +3,13 @@
     <h1 class="pa-4 white--text" fluid>
       Bandas
       <!-- POPUP -->
-      <v-dialog v-model="dialog" width="500" dark overlay-color="black">
+      <v-dialog
+        v-if="user && user.is_staff"
+        v-model="dialog"
+        width="500"
+        dark
+        overlay-color="black"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn fab x-small dark class="mb-3" v-bind="attrs" v-on="on">
             <v-icon>mdi-plus</v-icon>
@@ -26,6 +32,9 @@
                 class="mb-3"
                 dense
                 outlined
+                type="file"
+                ref="file1"
+                @change="uploadFile1"
                 accept="image/png, image/jpeg, image/bmp"
                 prepend-icon="mdi-upload"
                 label="Foto da Banda"
@@ -38,6 +47,9 @@
                 class="mb-3"
                 dense
                 outlined
+                type="file"
+                ref="file2"
+                @change="uploadFile2"
                 accept="image/png, image/jpeg, image/bmp"
                 prepend-icon="mdi-upload"
                 label="Banner da Banda"
@@ -106,7 +118,7 @@
         <v-col v-for="banda in bandas" :key="banda.id" cols="3">
           <v-card link :to="`/banda/${banda.id}`">
             <v-img
-              :src="banda.foto ? banda.foto.file : null"
+              :src="banda.foto ? banda.foto.url : null"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.5)"
               height="250px"
@@ -122,16 +134,16 @@
 </template>
 
 <script>
-import BandaService from "@/api/banda";
-import ArtistaService from "@/api/artista";
+// import BandaService from "@/api/banda";
+// import ArtistaService from "@/api/artista";
 import axios from "axios";
+import { mapState } from "vuex";
 
-const bandaService = new BandaService();
-const artistaService = new ArtistaService();
+// const bandaService = new BandaService();
+// const artistaService = new ArtistaService();
 export default {
   async created() {
-    this.bandas = await bandaService.buscarBandas();
-    this.artistas = await artistaService.buscarArtistas();
+    await this.buscarBandas();
   },
 
   data() {
@@ -143,25 +155,44 @@ export default {
       dialog: false,
     };
   },
-
+  computed: {
+    ...mapState("auth", ["user"]),
+  },
   methods: {
     async buscarBandas() {
       const { data } = await axios.get("api/Banda/");
       this.bandas = data;
+      console.log(this.bandas);
     },
-    async buscarArtistas() {
-      const { data } = await axios.get("api/Artista/");
-      this.artistas = data;
-    },
+
     async CriarBanda() {
+      this.banda.foto_attachment_key = await this.submitFile(this.foto_banda);
+      this.banda.capa_banda_attachment_key = await this.submitFile(
+        this.capa_banda
+      );
       await axios.post("api/Banda/", this.banda);
       this.buscarBandas();
       this.dialog = false;
     },
-    
+    uploadFile1() {
+      this.foto_banda = this.$refs.file1["internalValue"];
+    },
+    uploadFile2() {
+      this.capa_banda = this.$refs.file2["internalValue"];
+    },
+    async submitFile(image) {
+      const formData = new FormData();
+      formData.append("file", image);
+      const headers = { "Content-Type": "multipart/form-data" };
+      const { data } = await axios.post(
+        `${axios.defaults.baseURL}api/media/images/`,
+        formData,
+        { headers }
+      );
+      return data.attachment_key;
+    },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

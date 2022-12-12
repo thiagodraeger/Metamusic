@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" color="#121212">
-    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.file : null">
+    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.url : null">
       <v-row>
         <v-card-title class="nomebanda">
           {{ banda.nome_banda }}
@@ -17,6 +17,7 @@
           <v-col>
             <v-row>
               <v-btn
+                v-if="user && user.is_staff"
                 href="/Bandas"
                 x-small
                 light
@@ -32,6 +33,7 @@
               <v-dialog v-model="dialog" width="500" dark overlay-color="black">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
+                    v-if="user && user.is_staff"
                     v-bind="attrs"
                     v-on="on"
                     x-small
@@ -148,8 +150,11 @@
     <v-card-title class="white--text titulo"> Integrantes</v-card-title>
 
     <v-card-text class="white--text">
-      <v-row align="center" class="mx-0 text-subtitle-1"
-      v-for="(integrante, index) in  banda.integrantes" :key="index"
+      <v-row
+        align="center"
+        class="mx-0 text-subtitle-1"
+        v-for="(integrante, index) in banda.integrantes"
+        :key="index"
         >- {{ integrante.nome_artista }}
       </v-row>
     </v-card-text>
@@ -170,7 +175,7 @@
           <v-card link :to="`/albums/${album.id}`" class="card">
             <div class="d-flex flex-no-wrap justify-space-between">
               <v-img
-                :src="album.capa_album ? album.capa_album.file : null"
+                :src="album.capa_album ? album.capa_album.url : null"
               ></v-img>
             </div>
             <div class="Album">
@@ -189,9 +194,9 @@ import BandaService from "@/api/banda";
 const bandaService = new BandaService();
 import AlbumService from "@/api/album";
 const albumService = new AlbumService();
-import ArtistaService from "@/api/artista";
-const artistaService = new ArtistaService();
+
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   data: () => ({
@@ -200,13 +205,13 @@ export default {
     albums: [],
     artistas: [],
   }),
+  computed: {
+    ...mapState("auth", ["user"]),
+  },
   methods: {
     async buscarInfoBanda() {
       this.banda = await bandaService.buscarBandaPorId(this.$route.params.id);
-    },
-    async buscarArtistas() {
-      const { data } = await axios.get("api/Artista/");
-      this.artistas = data;
+      console.log(this.banda);
     },
     async deletarBanda(id) {
       await axios.delete(`api/Banda/${id}/`);
@@ -224,7 +229,6 @@ export default {
   },
   async mounted() {
     await this.buscarInfoBanda();
-    this.artistas = await artistaService.buscarArtistas();
   },
   async created() {
     this.albums = await albumService.buscarAlbum(Number(this.$route.params.id));
