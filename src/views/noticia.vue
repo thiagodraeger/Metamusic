@@ -40,6 +40,7 @@
           label="Adicione um comentário..."
           rows="1"
           row-height="2"
+          @keydown.enter.prevent="comentar"
           :append-icon="'mdi-send'"
           @click:append="comentar"
         >
@@ -121,6 +122,7 @@ export default {
     async listarComentarios() {
       const { data } = await axios.get("api/Comentario/");
       this.comentarios = data;
+      this.comentarios = this.comentarios.reverse(  )
     },
     async comentar() {
       this.comentario.criado_por = this.user.pk;
