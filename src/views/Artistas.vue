@@ -4,7 +4,13 @@
       Artistas
 
       <!-- POPUP -->
-      <v-dialog v-model="dialog" width="500" dark overlay-color="black">
+      <v-dialog
+        v-if="user && user.is_staff"
+        v-model="dialog"
+        width="500"
+        dark
+        overlay-color="black"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn fab x-small dark class="mb-3" v-bind="attrs" v-on="on">
             <v-icon>mdi-plus</v-icon>
@@ -28,12 +34,12 @@
                 dense
                 outlined
                 type="file"
+                ref="file"
+                @change="uploadFile"
                 accept="image/png, image/jpeg, image/bmp"
                 prepend-icon="mdi-upload"
                 label="Foto"
                 v-model="artista.foto_artista"
-                :append-icon="'mdi-send'"
-              @click:append="uploadFile"
               >
               </v-file-input>
               <v-text-field
@@ -92,6 +98,7 @@
 <script>
 import ArtistaService from "@/api/artista";
 import axios from "axios";
+import { mapState } from "vuex";
 
 const artistaService = new ArtistaService();
 export default {
@@ -106,6 +113,9 @@ export default {
       dialog: false,
     };
   },
+  computed: {
+    ...mapState("auth", ["user"]),
+  },
 
   methods: {
     async buscarArtistas() {
@@ -113,26 +123,24 @@ export default {
       this.artistas = data;
     },
     async CriarArtista() {
+      this.artista.foto_artista_attachment_key = await this.submitFile();
       await axios.post("api/Artista/", this.artista);
       this.buscarArtistas();
       this.dialog = false;
     },
     uploadFile() {
-      this.Images = this.$refs.file.files[0];
+      this.image = this.$refs.file["internalValue"];
     },
     async submitFile() {
       const formData = new FormData();
-      formData.append("file", this.Images);
+      formData.append("file", this.image);
       const headers = { "Content-Type": "multipart/form-data" };
       const { data } = await axios.post(
-        "https://metamusic.pythonanywhere.com/media/image",
+        `${axios.defaults.baseURL}api/media/images/`,
         formData,
         { headers }
       );
-      this.artista.foto_artista_attachment_key = data.attachment_key;
-      await axios.post("https://metamusic.pythonanywhere.com/", this.artista);
-      this.$swal("Cachorro registrado com sucesso!"),
-        this.$router.push("/Artista");
+      return data.attachment_key;
     },
   },
 };

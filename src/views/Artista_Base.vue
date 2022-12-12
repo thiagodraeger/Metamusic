@@ -18,6 +18,7 @@
           <v-col align-self="center">
             <v-row justify="end">
               <v-btn
+                v-if="user && user.is_staff"
                 href="/Artistas"
                 fab
                 x-small
@@ -29,7 +30,7 @@
               >
             </v-row>
             <v-row justify="end">
-              <v-dialog v-model="dialog" width="500" dark overlay-color="black">
+              <v-dialog v-if="user && user.is_staff" v-model="dialog" width="500" dark overlay-color="black">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn v-bind="attrs" v-on="on" fab x-small dark class="ma-1">
                     <v-icon>mdi-pencil</v-icon></v-btn
@@ -58,6 +59,9 @@
                         class="mb-3"
                         dense
                         outlined
+                        type="file"
+                        ref="file"
+                        @change="uploadFile"
                         accept="image/png, image/jpeg, image/bmp"
                         prepend-icon="mdi-upload"
                         label="Foto"
@@ -103,6 +107,7 @@
 import ArtistaService from "@/api/artista";
 const artistaService = new ArtistaService();
 import axios from "axios";
+import { mapState } from 'vuex';
 
 export default {
   async listarArtistas() {
@@ -119,6 +124,8 @@ export default {
     };
   },
   computed: {
+    ...mapState("auth", ["user"]),
+    
     data_nascimento() {
       return this.artista.dt_nasc.split("-").reverse().join("/");
     },
@@ -136,12 +143,27 @@ export default {
     },
     async editarArtista() {
       try {
+        this.artista.foto_artista_attachment_key = await this.submitFile();
         await axios.put(`api/Artista/${this.artista.id}/`, this.artista);
         this.buscarInfoArtista();
       } catch (e) {
         console.log(e);
       }
       this.dialog = false;
+    },
+    uploadFile() {
+      this.image = this.$refs.file["internalValue"];
+    },
+    async submitFile() {
+      const formData = new FormData();
+      formData.append("file", this.image);
+      const headers = { "Content-Type": "multipart/form-data" };
+      const { data } = await axios.post(
+        `${axios.defaults.baseURL}api/media/images/`,
+        formData,
+        { headers }
+      );
+      return data.attachment_key;
     },
   },
   async created() {
