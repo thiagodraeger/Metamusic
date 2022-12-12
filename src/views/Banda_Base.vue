@@ -148,9 +148,9 @@
     <v-card-title class="white--text titulo"> Integrantes</v-card-title>
 
     <v-card-text class="white--text">
-      <v-row align="center" class="mx-0 text-subtitle-1 ano"
+      <v-row align="center" class="mx-0 text-subtitle-1"
       v-for="(integrante, index) in  banda.integrantes" :key="index"
-        >{{ integrante.nome_artista }}
+        >- {{ integrante.nome_artista }}
       </v-row>
     </v-card-text>
 
