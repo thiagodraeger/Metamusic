@@ -106,7 +106,7 @@
         <v-col v-for="banda in bandas" :key="banda.id" cols="3">
           <v-card link :to="`/banda/${banda.id}`">
             <v-img
-              :src="banda.foto ? banda.foto.url : null"
+              :src="banda.foto ? banda.foto.file : null"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.5)"
               height="250px"

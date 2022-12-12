@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" color="#121212">
-    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.url : null">
+    <v-img height="400" :src="banda.capa_banda ? banda.capa_banda.file : null">
       <v-row>
         <v-card-title class="nomebanda">
           {{ banda.nome_banda }}
@@ -170,7 +170,7 @@
           <v-card link :to="`/albums/${album.id}`" class="card">
             <div class="d-flex flex-no-wrap justify-space-between">
               <v-img
-                :src="album.capa_album ? album.capa_album.url : null"
+                :src="album.capa_album ? album.capa_album.file : null"
               ></v-img>
             </div>
             <div class="Album">
