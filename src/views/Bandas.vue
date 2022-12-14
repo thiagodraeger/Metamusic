@@ -115,7 +115,7 @@
 
     <v-container fluid>
       <v-row dense>
-        <v-col v-for="banda in bandas" :key="banda.id" cols="3">
+        <v-col v-for="banda in bandas" :key="banda.id" cols="2">
           <v-card link :to="`/banda/${banda.id}`">
             <v-img
               :src="banda.foto ? banda.foto.file : null"
